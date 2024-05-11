@@ -95,19 +95,55 @@
                                     @endif
                                 </span>
                                 <span class="">
-                                    <a href="" class="btn fs-4 text-light"><i
-                                            class="bi bi-envelope-heart"></i></a>
+                                    <butto type="button" class="btn fs-4 text-light" data-bs-toggle="modal"
+                                        data-bs-target="#envelove{{$ucapan->id}}"><i class="bi bi-envelope-heart"></i></butto>
                                 </span>
                             </div>
                             <!-- /.info-box-content -->
                         </div>
                         <!-- /.info-box -->
                     </div>
+
+
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="envelove{{$ucapan->id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog-scrollable">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Dari {{$ucapan->nama}}</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                  {{$ucapan->ucapan}}
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-bs-dismiss="modal">Close</button>
+                                    <button type="button" class="btn btn-primary">Save changes</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 @endforeach
             </div>
         </div>
 
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
 </body>
 
 </html>
