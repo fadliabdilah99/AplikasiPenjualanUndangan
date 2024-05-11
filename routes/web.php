@@ -26,7 +26,7 @@ Route::get('/', function () {
 
 
 Route::fallback(function () {
-    return view('auth.login');
+    return view('produks.error');
 });
 
 Route::get('index', [homeController::class, 'index']);

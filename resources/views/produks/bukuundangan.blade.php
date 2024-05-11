@@ -22,13 +22,12 @@
         <div
             class="p-4 p-md-5 mb-4 rounded text-body-emphasis  bg-body-secondary d-flex justify-content-center text-center">
             <div class="col-lg-6 px-0">
-                <h1 class="display-6 fw-bold fst-italic">Laporan Buku Undangan Tamu</h1>
-                <h3 class="my-3">{{ $pengantin->pengantin_l }}<i
+                <h1 class="display-6  fw-bold fst-italic">Laporan Buku Undangan Tamu</h1>
+                <h3 class="my-5 ">{{ $pengantin->pengantin_l }}<i
                         class="bi bi-balloon-heart-fill text-danger"></i>{{ $pengantin->pengantin_p }}</h3>
-                <h5>Tamu Yang hadir</h5>
             </div>
         </div>
-        <div class="container">
+        <div class="container pt-5 ">
             <div class="row">
                 <div class="col-md-3 col-sm-6 col-12">
                     <div class="info-box">
@@ -56,17 +55,15 @@
                     <!-- /.info-box -->
                 </div>
                 <div class="col-md-6 col-sm-6 col-12">
-                    <div class="info-box d-flex justify-content-center">
-
-
-                        <a href="#daftar-undangan" style="text-decoration: none;">
-                            <div class="d-flex align-items-center pt-2 text-dark">
+                    <a href="#daftar-undangan" style="text-decoration: none;">
+                        <div class="info-box d-flex justify-content-center">
+                            <div class="d-flex align-items-center text-dark">
                                 <span class="info-box-text">see more</span>
                                 <span class="info-box-icon "><i class="bi bi-arrow-right-circle-fill"></i></span>
                             </div>
-                        </a>
-                        <!-- /.info-box-content -->
-                    </div>
+                            <!-- /.info-box-content -->
+                        </div>
+                    </a>
                     <!-- /.info-box -->
                 </div>
                 <!-- /.col -->
@@ -75,32 +72,41 @@
     </div>
 
     <div class="daftar-undangan" id="daftar-undangan">
-        <div class="title">
-            <h1>daftar-tamu</h1>
-        </div>
-        <div class="tamu row container">
-            @foreach ($ucapan as $ucapan)
-                <div class="col-md-3 col-sm-6 col-12">
-                    <div class="info-box bg-gradient-info">
-                        <span class="info-box-icon"><i class="far fa-bookmark"></i></span>
+        <div class="container">
 
-                        <div class="info-box-content">
-                            <span class="info-box-text">Bookmarks</span>
-                            <span class="info-box-number">41,410</span>
+            <div class="title">
+                <h1>daftar-tamu</h1>
+            </div>
+            <div class="tamu row  container">
+                @foreach ($ucapan as $ucapan)
+                    <div class="col-md-3 col-sm-6 col-12">
+                        <div
+                            class="info-box bg-gradient-info 
+                    @if ($ucapan->kehadiran == 2) {{ 'bg-gradient-danger' }} @endif">
+                            <span class="info-box-icon"><i class="far fa-bookmark"></i></span>
 
-                            <div class="progress">
-                                <div class="progress-bar" style="width: 70%"></div>
+                            <div class="info-box-content">
+                                <h5 class="info-box-text"> {{ $ucapan->nama }} </h5>
+                                <span class="">
+                                    @if ($ucapan->kehadiran == 1)
+                                        <b>hadir</b>
+                                    @else
+                                        <b>Berhalangan Hadir</b>
+                                    @endif
+                                </span>
+                                <span class="">
+                                    <a href="" class="btn fs-4 text-light"><i
+                                            class="bi bi-envelope-heart"></i></a>
+                                </span>
                             </div>
-                            <span class="progress-description">
-                                70% Increase in 30 Days
-                            </span>
+                            <!-- /.info-box-content -->
                         </div>
-                        <!-- /.info-box-content -->
+                        <!-- /.info-box -->
                     </div>
-                    <!-- /.info-box -->
-                </div>
-            @endforeach
+                @endforeach
+            </div>
         </div>
+
     </div>
 </body>
 

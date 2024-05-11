@@ -202,6 +202,7 @@ class produkController extends Controller
     {
         $No = $request->No;
         $bukuundangan = ucapan::where('undangan_id', $request->undangan_id)->where('ucapans.No', $No);
+        $bukuundangan2 = ucapan::where('undangan_id', $request->undangan_id)->where('ucapans.No', $No);
 
         $Buku['ucapan'] = $bukuundangan->get();
 
@@ -210,8 +211,10 @@ class produkController extends Controller
             ->select('ucapans.*', 'pduas.pengantin_l', 'pduas.pengantin_p')
             ->first();
 
-        $Buku['tamuH'] = $bukuundangan->where('kehadiran', '1')->count();
+
         $Buku['tamuTH'] = $bukuundangan->where('kehadiran', '2')->count();
+        $Buku['tamuH'] = $bukuundangan2->where('kehadiran', '1')->count();
+
 
         return view('produks.bukuundangan')->with($Buku);
     }
