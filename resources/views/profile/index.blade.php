@@ -187,16 +187,128 @@
                                     <tr>
                                         <td>{{ $satu->id }}</td>
                                         <td>{{ $satu->pengantin_l }} & {{ $satu->pengantin_p }}</td>
-                                        <td>11-7-2014</td>
-                                        <td>
+                                        <td>{{ $satu->tanggal }}</td>
+                                        <td class="d-flex" style="gap:10px;">
                                             @if ($satu->status == 'edit')
-                                                <button type="button" class="btn bg-success m-1 text-light"
-                                                    data-bs-toggle="modal" data-bs-target="#edit-modal{{ $satu->id }}">
-                                                    Editff
+                                                <a href="{{ url('luxuri/' . $satu->id) }}" class="btn btn-info"><i
+                                                        class="bi bi-eye"></i></a>
+                                                <button type="button" class="btn btn-warning" data-toggle="modal"
+                                                    data-target="#edit{{ $satu->id }}">
+                                                    Edit
                                                 </button>
-                                                <a href="" class="btn btn-info">Bayar</a>
+                                                <button type="button" class="btn btn-primary" data-toggle="modal"
+                                                    data-target="#bayar{{ $satu->id }}">
+                                                    Transfer
+                                                </button>
+                                                {{-- payment --}}
+                                                <form action="#" id="donation_form">
+
+                                                    <div class="" hidden>
+
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label for="">No</label>
+                                                                    <input type="text" name="No"
+                                                                        class="form-control" id="No"
+                                                                        value="{{ $satu->No }}">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label for="">Id</label>
+                                                                    <input type="Number" name="undangan_id"
+                                                                        class="form-control" id="undangan_id"
+                                                                        value="{{ $satu->id }}">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label for="">Nama</label>
+                                                                    <input type="text" name="donor_name"
+                                                                        class="form-control" id="donor_name"
+                                                                        value="{{ $satu->name }}">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label for="">E-Mail</label>
+                                                                    <input type="email" name="donor_email"
+                                                                        class="form-control" id="donor_email"
+                                                                        value="{{ $satu->email }}">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <div class="form-group">
+                                                                    <label for="">Jenis Donasi</label>
+                                                                    <input type="text" name="donation_type"
+                                                                        class="form-control" id="donation_type"
+                                                                        value="pembayaran undangan {{ $satu->id }}">
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class="row">
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label for="">Jumlah</label>
+                                                                    <input type="number" name="amount"
+                                                                        class="form-control" id="amount"
+                                                                        value="{{ $satu->harga }}">
+                                                                </div>
+                                                            </div>
+                                                            <div class="col-md-6">
+                                                                <div class="form-group">
+                                                                    <label for="">Catatan (Opsional)</label>
+                                                                    <textarea name="note" cols="30" rows="3" class="form-control" id="note"></textarea>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                    <button class="btn btn-success" type="submit">Payment</button>
+                                                </form>
                                             @else
-                                                <a href="{{ url("luxuri/$satu->id") }}" class="btn btn-secondary">View</a>
+                                                <a href="{{ url('luxuri/' . $satu->id) }}" class="btn btn-info"><i
+                                                        class="bi bi-eye"></i></a>
+
+                                                <form action="{{ url('whatsapp') }}" method="POST">
+                                                    @csrf
+                                                    <input hidden type="text" name="link"
+                                                        value="/{{ $satu->nama }}/{{ $satu->id }}" id="">
+                                                    <input hidden type="text"
+                                                        value="{{ $satu->pengantin_l }} & {{ $satu->pengantin_p }}"
+                                                        name="pengantin">
+
+                                                    <button type="submit" class="btn btn-info"><i
+                                                            class="bi bi-send"></i></button>
+                                                </form>
+
+                                                <form action="{{ url('copy') }}" method="POST">
+                                                    @csrf
+                                                    <input hidden type="text" name="copy"
+                                                        value="https://f8cf-180-244-134-26.ngrok-free.app/{{ $satu->nama }}/{{ $satu->id }}"
+                                                        id="">
+                                                    <input hidden type="text"
+                                                        value="{{ $satu->pengantin_l }} & {{ $satu->pengantin_p }}"
+                                                        name="pengantin">
+                                                    <button type="submit" class="btn btn-info"><i
+                                                            class="bi bi-copy"></i></button>
+                                                </form>
+
+                                                <form action="{{ url('daftartamu2') }}" method="POST">
+                                                    @csrf
+                                                    <input type="number" name="No" value="{{ $satu->No }}"
+                                                        hidden>
+                                                    <input type="number" name="undangan_id" value="{{ $satu->id }}"
+                                                        hidden>
+                                                    <button type="submit" class="btn btn-info"><i
+                                                            class="bi bi-book-half"></i></button>
+                                                </form>
                                             @endif
                                         </td>
                                     </tr>

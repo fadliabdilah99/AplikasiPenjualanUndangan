@@ -5,6 +5,7 @@ use App\Http\Controllers\homeController;
 use App\Http\Controllers\messageController;
 use App\Http\Controllers\midtransController;
 use App\Http\Controllers\payController;
+use App\Http\Controllers\product1Controller;
 use App\Http\Controllers\produkController;
 use App\Http\Controllers\profileController;
 use Illuminate\Support\Facades\Route;
@@ -44,10 +45,17 @@ Route::post('copy', [messageController::class, 'copy']);
 Route::get('luxuri/{id}', [produkController::class, 'index']);
 Route::get('dua', [produkController::class, 'produk2']);
 Route::post('ucapanpdua', [produkController::class, 'ucapan']);
-Route::post('editdua', [produkController::class, 'create']);
+Route::post('createdua', [produkController::class, 'create']);
 Route::post('update/{id}', [produkController::class, 'update']);
 Route::post('daftartamu2', [produkController::class, 'daftartamu']);
 Route::delete('dua/{id}', [produkController::class, 'destroy']);
+
+
+
+Route::get('ekonomi/{id}', [product1Controller::class, 'index']);
+Route::get('satu', [product1Controller::class, 'produk1']);
+Route::post('createsatu', [product1Controller::class, 'create']);
+
 
 
 

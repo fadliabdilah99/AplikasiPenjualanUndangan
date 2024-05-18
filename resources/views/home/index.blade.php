@@ -335,7 +335,6 @@
             <!-- START THE FEATURETTES -->
             @foreach ($produk as $item)
                 <hr class="featurette-divider">
-
                 <div class="row featurette">
                     <div class="col-md-7 <?php if ($item->id % 2 == 0) {
                         echo 'order-md-2';
@@ -432,7 +431,11 @@
                                                 value="admin@admin.com" disabled>
                                         </div>
                                         <div class="form-group">
-                                            <label for="inputSubject">Id Undangan</label>
+                                                <label for="inputSubject">Id Undangan<button
+                                                        class="btn text-light alert-report" type="button">
+                                                        <i class="text-info bi bi-info-circle"></i>
+                                                    </button></label>
+
                                             <input type="text" id="inputSubject" class="form-control"
                                                 name="title" value="0">
                                         </div>
@@ -489,6 +492,22 @@
             Swal.fire({
                 title: 'Peringatan!',
                 text: `anda belum Login, tidak bisa mengakses fitur tersebut.`,
+                icon: 'info',
+                confirmButtonText: 'OK',
+                focusConfirm: false
+            });
+        });
+    </script>
+
+
+    <script>
+        console.log('delete')
+        $('.alert-report').click(function(e) {
+            e.preventDefault();
+            const data = $(this).closest('.featurette').find('h2').text();
+            Swal.fire({
+                title: 'Informasi',
+                text: `Apabila anda ingin melaporkan undangan tertentu maka isi id undangan sesuai yang di halaman undangan anda, selain dari melaporkan undangan maka isi id undangan dengan 0.`,
                 icon: 'info',
                 confirmButtonText: 'OK',
                 focusConfirm: false
