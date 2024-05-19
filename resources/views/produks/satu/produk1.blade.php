@@ -183,9 +183,8 @@
                                     <span>Di Akhir September 2022</span>
                                 </div>
                                 <div class="timeline-body">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione repellendus
-                                        fugit et nostrum, omnis quae voluptatibus hic maiores, iusto temporibus numquam
-                                        deserunt blanditiis, corrupti at!</p>
+                                    <p>Liburan akhir tahun keluarga di salah satu kota di jawabarat dengan menggunakan
+                                        jasa rental yang ia punya di sanalah awal mula kenal. </p>
                                 </div>
                             </div>
                         </li>
@@ -199,8 +198,9 @@
                                     <span>12 Februari 2023</span>
                                 </div>
                                 <div class="timeline-body">
-                                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Culpa doloremque minima
-                                        aliquam, inventore nisi fugiat itaque veritatis est repellendus accusamus?</p>
+                                    <p>kami berlanjut komunikasi di salah satu media sosial dan di sanalah kita
+                                        berkenalan lebih dekat, bertukar cerita hingga rasa dan memulai cerita baru
+                                        tersebut.</p>
                                 </div>
                             </div>
                         </li>
@@ -214,9 +214,8 @@
                                     <span>30 April 2023</span>
                                 </div>
                                 <div class="timeline-body">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laborum reprehenderit
-                                        voluptatem, quos non ullam ratione optio recusandae maiores accusantium quisquam
-                                        labore veniam dolore, sit possimus sapiente similique iusto illo commodi?</p>
+                                    <p>untuk membuktikan cinta, dengan rasa nyaman dan keyakinan yang kita miliki kami
+                                        memutuskan untuk berlanjut ke jenjang yang lebih serius.</p>
                                 </div>
                             </div>
                         </li>
@@ -230,9 +229,8 @@
                                     <span>21 Januari 2024</span>
                                 </div>
                                 <div class="timeline-body">
-                                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Placeat ex quibusdam
-                                        rem? Maxime sunt iure esse, numquam laboriosam velit ullam harum voluptates
-                                        explicabo incidunt dicta nisi?</p>
+                                    <p>Bismillah dan di hari ini cerita kita berlanjut sampai tua dan jannah-Nya
+                                        bersama.</p>
                                 </div>
                             </div>
                         </li>
@@ -264,7 +262,7 @@
                         <a href="{{ asset('produk1') }}/img/nazma/IMG_20231220_123648.jpg" data-toggle="lightbox"
                             data-caption="image 3" data-gallery="myfoto">
                             <img src="{{ asset('produk1') }}/img/nazma/IMG_20231220_123648.jpg" alt=""
-                                class="img-fluid w-100 rounded" />
+                                class="{{ asset('produk1') }}/img-fluid w-100 rounded" />
                         </a>
                     </div>
                     <div class="col mt-3">
@@ -342,14 +340,15 @@
                 <h1 class="font-ucapan">ucapan</h1>
                 <p class="blockquote-footer mt-1">Komen 1</p>
                 {{-- @foreach ($ucapan as $ucapan) --}}
-                    <div class="card mt-3 bg-dark px-5">
-                        <div class="card-body">
-                            <blockquote class="blockquote mb-0">
-                                <p>contoh ucapan</p>
-                                <p class="blockquote-footer">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Reiciendis error sequi quisquam doloribus doloremque?</p>
-                            </blockquote>
-                        </div>
+                <div class="card mt-3 bg-dark px-5">
+                    <div class="card-body">
+                        <blockquote class="blockquote mb-0">
+                            <p>contoh ucapan</p>
+                            <p class="blockquote-footer">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
+                                Reiciendis error sequi quisquam doloribus doloremque?</p>
+                        </blockquote>
                     </div>
+                </div>
                 {{-- @endforeach --}}
 
                 {{-- @if ($totalucapan > 10)
@@ -374,13 +373,17 @@
                         <ul class="list-group">
                             <li class="list-group-item">
                                 <div class="fw-bold">BRI</div>
-                                1234567890
+                                32030609999-MR.Fadli.s.T
                             </li>
                             <li class="list-group-item">
                                 <div class="fw-bold">Madiri</div>
-                                1234567890
+                                32030609999-MR.Fadli.s.T
                             </li>
-
+                            <li class="list-group-item">
+                                <div class="fw-bold">Qr shoppe</div>
+                                <img src="{{ asset('produk1') }}/img/no_markReactNative-snapshot-image.png"
+                                    alt="" class="img-thumbnail" width="150">
+                            </li>
                         </ul>
                     </div>
                 </div>
@@ -415,7 +418,7 @@
 
     <script>
         simplyCountdown(".simply-countdown", {
-            year: 2030 // required
+            year: 2025, // required
             month: 1, // required
             day: 21, // required
             hours: 9, // Default is 0 [0-23] integer

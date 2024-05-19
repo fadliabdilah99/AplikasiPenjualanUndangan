@@ -190,7 +190,7 @@
                                         <td>{{ $satu->tanggal }}</td>
                                         <td class="d-flex" style="gap:10px;">
                                             @if ($satu->status == 'edit')
-                                                <a href="{{ url('luxuri/' . $satu->id) }}" class="btn btn-info"><i
+                                                <a href="{{ url('ekonomi/' . $satu->id) }}" class="btn btn-info"><i
                                                         class="bi bi-eye"></i></a>
                                                 <button type="button" class="btn btn-warning" data-toggle="modal"
                                                     data-target="#edit{{ $satu->id }}">
@@ -273,7 +273,7 @@
                                                     <button class="btn btn-success" type="submit">Payment</button>
                                                 </form>
                                             @else
-                                                <a href="{{ url('luxuri/' . $satu->id) }}" class="btn btn-info"><i
+                                                <a href="{{ url('ekonomi/' . $satu->id) }}" class="btn btn-info"><i
                                                         class="bi bi-eye"></i></a>
 
                                                 <form action="{{ url('whatsapp') }}" method="POST">
