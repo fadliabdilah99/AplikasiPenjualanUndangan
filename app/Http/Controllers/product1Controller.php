@@ -2,8 +2,13 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\foto;
+use App\Models\pdua;
 use App\Models\psatu;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
+
 
 class product1Controller extends Controller
 {
@@ -14,10 +19,19 @@ class product1Controller extends Controller
 
    public function index($id)
    {
-      $data = psatu::where('id', $id)->first();
+      $data = pdua::where('id', $id)->first();
       $status = $data->status;
+      $tanggal = $data->tanggal;
+
       // mengirim data
-      $p2['data'] = psatu::where('id', $id)->first();
+      $p2['data'] = pdua::where('id', $id)->first();
+      $p2['tanggal'] = date("l d F Y", strtotime($tanggal));
+
+      // memisahkan data akad dan resepsi
+      $dataArray = Str::of($p2['data']->akadResepsi)->explode('-');
+      $p2['akad'] = $dataArray[0];
+      $p2['resepsi'] = $dataArray[1];
+
 
 
 
@@ -40,19 +54,84 @@ class product1Controller extends Controller
 
    public function create(Request $request)
    {
-      $requesd = $request->validate([
+
+      $request->validate([
          'user_id' => 'required',
          'pengantin_l' => 'required|string|max:255',
          'pengantin_p' => 'required|string|max:255',
+         'tanggal' => 'required|date',
+         'ortu_LL' => 'required|string|max:255',
+         'ortu_LP' => 'required|string|max:255',
+         'ortu_PL' => 'required|string|max:255',
+         'ortu_PP' => 'required|string|max:255',
+         'akad' => 'nullable|date_format:H:i',
+         'resepsi' => 'nullable|date_format:H:i',
+         'linkGmaps' => 'nullable|string|max:255',
+         'alamat' => 'nullable|string|max:255',
+         'rekening1' => 'nullable|string|max:255',
+         'rekening2' => 'nullable|string|max:255',
+         'foto_l' => 'nullable|image|mimes:jpeg,png,jpg,gif|dimensions:ratio=1/1',
+         'foto_p' => 'nullable|image|mimes:jpeg,png,jpg,gif|dimensions:ratio=1/1',
+         'photos.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|dimensions:ratio=1/1',
       ]);
 
-      $psatu = psatu::create([
-         "user_id" =>$request->user_id,
-         "pengantin_l" =>$request->pengantin_l,
-         "pengantin_p" =>$request->pengantin_p,
+
+
+      $pdua = pdua::create([
+         'user_id' => $request->input('user_id'),
+         'No' => 1,
+         'pengantin_l' => $request->input('pengantin_l'),
+         'pengantin_p' => $request->input('pengantin_p'),
+         'tanggal' => $request->input('tanggal'),
+         'ortu_l' => 'Bapak ' . $request->input('ortu_LL') . ('-') . ' Ibu' . $request->input('ortu_LP'),
+         'ortu_p' => 'Bapak ' . $request->input('ortu_PL') . ('-') . ' Ibu' . $request->input('ortu_PP'),
+         'akadResepsi' => $request->input('akad') . '-' . $request->input('resepsi'),
+         'linkGmaps' => $request->input('linkGmaps'),
+         'alamat' => $request->input('alamat'),
+         'rekening' => $request->input('rekening1') . '-' . $request->input('rekening2'),
       ]);
 
+      // proses foto profile
+      $image = $request->file('foto_l');
+      $filename_l = date('Y-m-d') . $image->getClientOriginalName();
+      $path = 'assets/' . $filename_l;
+      Storage::disk('public')->put($path, file_get_contents($image));
 
-      return redirect('ekonomi/' . $psatu->id)->with('success', 'data Berhasil Terkirim');
+
+
+      $image = $request->file('foto_p');
+      $filename_p = date('Y-m-d') . $image->getClientOriginalName();
+      $path = 'assets/' . $filename_p;
+      Storage::disk('public')->put($path, file_get_contents($image));
+      foto::create([
+         'No' => 1,
+         'undangan_id' => $pdua->id,
+         'foto' => $filename_l,
+         'noFoto' => 1,
+      ]);
+      foto::create([
+         'No' => 1,
+         'undangan_id' => $pdua->id,
+         'foto' => $filename_p,
+         'noFoto' => 2,
+      ]);
+      // foto album
+      if ($request->hasFile('photos')) {
+         $noFoto = 2;
+         foreach ($request->file('photos') as $photo) {
+            $album = date('Y-m-d') . $photo->getClientOriginalName();
+            $path = 'assets/' . $album;
+            Storage::disk('public')->put($path, file_get_contents($photo));
+
+            // Simpan data ke database
+            foto::create([
+               'No' => 1,
+               'undangan_id' => $pdua->id,
+               'foto' => $album,
+               'noFoto' => ++$noFoto,
+            ]);
+         }
+      }
+      return redirect('ekonomi/' . $pdua->id)->with('success', 'data Berhasil Terkirim');
    }
 }

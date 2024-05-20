@@ -24,7 +24,7 @@
         class="hero w-100 h-100 p-3 mx-auto text-center d-flex justify-content-center align-items-center text-white">
         <main>
             <h4>Kepada <span>Bapak/ibu/saudara/i </span></h4>
-            <h1>Uceh & Nazma</h1>
+            <h1>{{ $data->pengantin_l }} & {{ $data->pengantin_p }}</h1>
             <p>akan melangsungkan resepsi pernikahan dalam</p>
             <div class="simply-countdown"></div>
             <a href="#home" class="btn btn-lg mt-4" onClick="enabels()">Lihat undangan</a>
@@ -63,7 +63,7 @@
                     <h4>السلام عليكم ورحمة الله وبركاته</h4>
                     <p>Atas berkah & rahmat Allah Subhanallohu Wata'ala, tanpa mengurangi rasa hormat, kami mengundang
                         bapak/ibu/saudara/i serta kerabat sekalian untuk menghadiri acara pernikahan kami: </p>
-                    <h6>Diselenggarakan pada 20 desember 2030 Di Cianjur</h6>
+                    <h6>Diselenggarakan pada {{ $tanggal }} Di Cianjur</h6>
                 </div>
             </div>
 
@@ -71,12 +71,10 @@
                 <div class="col-lg-6">
                     <div class="row">
                         <div class="col-8 text-end">
-                            <h3>Siti Nazma Sania</h3>
+                            <h3>{{ $data->pengantin_l }}</h3>
                             <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, excepturi labore perspiciatis eum nam iusto?</p> -->
                             <p>
-                                putri dari Bpk.Asep Lukman(alm) <br />
-                                dan <br />
-                                ibu Tuti Alawiyah
+                                putra dari {{ $data->ortu_l }}
                             </p>
                         </div>
                         <div class="col-4">
@@ -93,12 +91,10 @@
                                 class="img-resposive rounded-circle" />
                         </div>
                         <div class="col-8">
-                            <h3>Muslihudin S.T</h3>
+                            <h3>{{ $data->pengantin_p }}</h3>
                             <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, excepturi labore perspiciatis eum nam iusto?</p> -->
                             <p>
-                                putra dari Bpk.Dacu Samsudin(alm) <br />
-                                dan <br />
-                                ibu Patimah
+                                putra dari {{ $data->ortu_p }}
                             </p>
                         </div>
                     </div>
@@ -112,10 +108,9 @@
             <div class="row justify-content-center">
                 <div class="col-md8 col-10 text-center">
                     <h2>informasi acara</h2>
-                    <p class="alamat">Alamat : Kp.Sukataris Desa.Cibulakan Kec.Cugenang Cianjur <br />Belakang Yayasan
-                        Muhajirin</p>
-                    <a href="https://www.google.co.id/maps/place/Sukataris/@-6.8247971,107.0964918,18z/data=!4m7!3m6!1s0x2e684dc4da0481eb:0xc98bbc307d0a863!4b1!8m2!3d-6.824776!4d107.0964552!16s%2Fg%2F11h55ngy6g?entry=ttu"
-                        target="_blank" class="btn btn-light btn-sm">Klik Untuk Lihat Alamat</a>
+                    <p class="alamat">Alamat : {{ $data->alamat }}</p>
+                    <a href="{{ $data->maps }}" target="_blank" class="btn btn-light btn-sm">Klik Untuk Lihat
+                        Alamat</a>
                     <p class="description my-4">Dengan memohon rahmat dan ridho Allah SWT, kami bermaksud
                         menyelenggarakan pernikahan kami, yang insya Allah akan di laksanakan pada : </p>
                 </div>
@@ -128,11 +123,11 @@
                             <div class="row justify-content-center">
                                 <div class="col-md-6">
                                     <i class="bi bi-clock-history d-block"> </i>
-                                    <span>09.00 s/d selesai</span>
+                                    <span>{{ $data->akad }} s/d selesai</span>
                                 </div>
                                 <div class="col-md-6">
                                     <i class="bi bi-calendar2-week d-block"></i>
-                                    <span>Minggu 21 januari 2023</span>
+                                    <span>{{ $tanggal }}</span>
                                 </div>
                             </div>
                         </div>
@@ -146,11 +141,11 @@
                             <div class="row justify-content-center">
                                 <div class="col-md-6">
                                     <i class="bi bi-clock-history d-block"> </i>
-                                    <span>10.30 s/d selesai </span>
+                                    <span>{{$data->resepsi}} s/d selesai </span>
                                 </div>
                                 <div class="col-md-6">
                                     <i class="bi bi-calendar2-week d-block"></i>
-                                    <span>Minggu 21 januari 2024</span>
+                                    <span>{{$tanggal}}</span>
                                 </div>
                             </div>
                         </div>
@@ -171,6 +166,9 @@
                 </div>
             </div>
             <div class="row">
+                @if ($data->status == 'edit')
+                    <a href="#" class="btn btn-dark">test</a>
+                @endif
                 <div class="col">
                     <ul class="timeline">
                         <li>

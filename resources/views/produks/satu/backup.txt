@@ -373,11 +373,11 @@
                         <ul class="list-group">
                             <li class="list-group-item">
                                 <div class="fw-bold">BRI</div>
-                               123456789 -lorem ipsum
+                                32030609999-MR.Fadli.s.T
                             </li>
                             <li class="list-group-item">
                                 <div class="fw-bold">Madiri</div>
-                               123456789 -lorem ipsum
+                                32030609999-MR.Fadli.s.T
                             </li>
                             <li class="list-group-item">
                                 <div class="fw-bold">Qr shoppe</div>
@@ -575,13 +575,3 @@
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
-

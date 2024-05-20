@@ -98,8 +98,8 @@ class produkController extends Controller
             'pengantin_l' => $request->input('pengantin_l'),
             'pengantin_p' => $request->input('pengantin_p'),
             'tanggal' => $request->input('tanggal'),
-            'ortu_l' => 'Bapak ' . $request->input('ortu_LL') . ' Ibu' . $request->input('ortu_LP'),
-            'ortu_p' => 'Bapak ' . $request->input('ortu_PL') . ' Ibu' . $request->input('ortu_PP'),
+            'ortu_l' => 'Bapak ' . $request->input('ortu_LL') . ' Ibu ' . $request->input('ortu_LP'),
+            'ortu_p' => 'Bapak ' . $request->input('ortu_PL') . ' Ibu ' . $request->input('ortu_PP'),
             'akadResepsi' => $request->input('akad') . '-' . $request->input('resepsi'),
             'linkGmaps' => $request->input('linkGmaps'),
             'alamat' => $request->input('alamat'),
@@ -112,10 +112,10 @@ class produkController extends Controller
         $path = 'assets/' . $filename_l;
         Storage::disk('public')->put($path, file_get_contents($image));
 
-        $image = $request->file('foto_pasangan');
-        $filename_pasangan = date('Y-m-d') . $image->getClientOriginalName();
-        $path = 'assets/' . $filename_pasangan;
-        Storage::disk('public')->put($path, file_get_contents($image));
+        // $image = $request->file('foto_pasangan');
+        // $filename_pasangan = date('Y-m-d') . $image->getClientOriginalName();
+        // $path = 'assets/' . $filename_pasangan;
+        // Storage::disk('public')->put($path, file_get_contents($image));
 
 
         $image = $request->file('foto_p');
@@ -128,18 +128,22 @@ class produkController extends Controller
             'foto' => $filename_l,
             'noFoto' => 1,
         ]);
+
+
         foto::create([
             'No' => 2,
             'undangan_id' => $pdua->id,
             'foto' => $filename_p,
             'noFoto' => 2,
         ]);
-        foto::create([
-            'No' => 2,
-            'undangan_id' => $pdua->id,
-            'foto' => $filename_pasangan,
-            'noFoto' => 88,
-        ]);
+
+
+        // foto::create([
+        //     'No' => 2,
+        //     'undangan_id' => $pdua->id,
+        //     'foto' => $filename_pasangan,
+        //     'noFoto' => 88,
+        // ]);
 
 
         // foto album

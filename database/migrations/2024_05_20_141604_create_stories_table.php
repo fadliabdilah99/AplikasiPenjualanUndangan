@@ -11,13 +11,8 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('psatus', function (Blueprint $table) {
+        Schema::create('stories', function (Blueprint $table) {
             $table->id();
-            $table->integer('user_id');
-            $table->integer('No')->default(1);
-            $table->string('pengantin_l');
-            $table->string('pengantin_p');
-            $table->string('status')->default('edit');
             $table->timestamps();
         });
     }
@@ -27,6 +22,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('psatus');
+        Schema::dropIfExists('stories');
     }
 };
