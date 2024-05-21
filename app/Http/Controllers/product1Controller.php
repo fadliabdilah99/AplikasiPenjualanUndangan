@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\foto;
 use App\Models\pdua;
 use App\Models\psatu;
+use App\Models\stori;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -133,5 +134,33 @@ class product1Controller extends Controller
          }
       }
       return redirect('ekonomi/' . $pdua->id)->with('success', 'data Berhasil Terkirim');
+   }
+
+   public function story($id, Request $request)
+   {
+      $request->validate([
+         'undangan_id' => 'required',
+         'No' => 'required',
+         'foto' => 'required',
+         'title' => 'required',
+         'tanggal' => 'required',
+         'deskripsi' => 'required',
+      ]);
+
+      $image = $request->file('foto');
+      $filename = date('Y-m-d_H-i-s') . '_' . microtime(true) . '_' . $image->getClientOriginalName();
+      $path = 'assets/' . $filename;
+      Storage::disk('public')->put($path, file_get_contents($image));
+
+
+      stori::create([
+         'undangan_id' => $id,
+         'No' => $request->input('No'),
+         'foto' => $filename,
+         'title' => $request->input('title'),
+         'tanggal' => $request->input('tanggal'),
+         'deskripsi' => $request->input('deskripsi'),
+      ]);
+      return redirect('ekonomi/' . $id)->with('success', 'data Berhasil Terkirim');
    }
 }

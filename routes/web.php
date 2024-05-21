@@ -41,7 +41,7 @@ Route::post('copy', [messageController::class, 'copy']);
 
 
 
-
+// produk 2
 Route::get('luxuri/{id}', [produkController::class, 'index']);
 Route::get('dua', [produkController::class, 'produk2']);
 Route::post('ucapanpdua', [produkController::class, 'ucapan']);
@@ -51,10 +51,11 @@ Route::post('daftartamu2', [produkController::class, 'daftartamu']);
 Route::delete('dua/{id}', [produkController::class, 'destroy']);
 
 
-
+// produk 1
 Route::get('ekonomi/{id}', [product1Controller::class, 'index']);
 Route::get('satu', [product1Controller::class, 'produk1']);
 Route::post('createsatu', [product1Controller::class, 'create']);
+Route::post('story/{id}', [product1Controller::class, 'story']);
 
 
 

@@ -5,6 +5,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Uceh And Nazma</title>
+    <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <link rel="stylesheet" href="{{ asset('produk1') }}/style/style.css" />
@@ -23,6 +25,27 @@
     <section id="hero"
         class="hero w-100 h-100 p-3 mx-auto text-center d-flex justify-content-center align-items-center text-white">
         <main>
+
+            @if (session('success'))
+                <div id="toastsContainerTopRight" class="toasts-top-right fixed">
+                    <div class="toast bg-info fade show" role="alert" aria-live="assertive" aria-atomic="true">
+                        <div class="toast-header"><strong class="mr-auto">Info</strong><small>Important</small></div>
+                        <div class="toast-body"> {{ session('success') }}</div>
+                    </div>
+                </div>
+            @endif
+            @if ($errors->any())
+                <div class="alert alert-danger alert-dismissible">
+                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                    <h5><i class="icon fas fa-ban"></i>Data Gagal Disimpan!</h5>
+                    <ul>
+                        @foreach ($errors->all() as $error)
+                            <li>{{ $error }}</li>
+                        @endforeach
+                    </ul>
+                </div>
+            @endif
+
             <h4>Kepada <span>Bapak/ibu/saudara/i </span></h4>
             <h1>{{ $data->pengantin_l }} & {{ $data->pengantin_p }}</h1>
             <p>akan melangsungkan resepsi pernikahan dalam</p>
@@ -141,11 +164,11 @@
                             <div class="row justify-content-center">
                                 <div class="col-md-6">
                                     <i class="bi bi-clock-history d-block"> </i>
-                                    <span>{{$data->resepsi}} s/d selesai </span>
+                                    <span>{{ $data->resepsi }} s/d selesai </span>
                                 </div>
                                 <div class="col-md-6">
                                     <i class="bi bi-calendar2-week d-block"></i>
-                                    <span>{{$tanggal}}</span>
+                                    <span>{{ $tanggal }}</span>
                                 </div>
                             </div>
                         </div>
@@ -167,7 +190,56 @@
             </div>
             <div class="row">
                 @if ($data->status == 'edit')
-                    <a href="#" class="btn btn-dark">test</a>
+                    <button type="button" class="btn btn-dark" data-bs-toggle="modal"
+                        data-bs-target="#exampleModal">
+                        Add Your Story
+                    </button>
+
+                    <!-- Modal -->
+                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+                        aria-hidden="true">
+                        <div class="modal-dialog modal-dialog modal-dialog-centered">
+                            <div class="modal-content">
+                                <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                        aria-label="Close"></button>
+                                </div>
+                                <div class="modal-body">
+                                    <form action="{{ url('story/' . $data->id) }}" method="POST"
+                                        enctype="multipart/form-data">
+                                        @csrf
+                                        <input type="text" name="No" value="{{ $data->No }}" hidden>
+                                        <div class="mb-3">
+                                            <label for="foto" class="form-label">foto 1/1</label>
+                                            <input type="file" name="foto" class="form-control"
+                                                id="foto">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="exampleInputEmail1" class="form-label">Title</label>
+                                            <input type="text" class="form-control" name="title"
+                                                id="exampleInputEmail1">
+                                        </div>
+                                        <div class="mb-3">
+                                            <label for="tanggal" class="form-label">Tanggal/Tempat</label>
+                                            <input type="text" class="form-control" name="tanggal"
+                                                id="tanggal">
+                                        </div>
+                                        <div class="form-floating">
+                                            <textarea class="form-control" name="deskripsi" placeholder="Leave a comment here" id="floatingTextarea2"
+                                                style="height: 100px"></textarea>
+                                            <label for="floatingTextarea2 fs-6">cerita cintaku</label>
+                                        </div>
+                                        <div class="modal-footer">
+                                            <button type="button" class="btn btn-secondary"
+                                                data-bs-dismiss="modal">Close</button>
+                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 @endif
                 <div class="col">
                     <ul class="timeline">
@@ -413,7 +485,6 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
     </script>
-
     <script>
         simplyCountdown(".simply-countdown", {
             year: 2025, // required
