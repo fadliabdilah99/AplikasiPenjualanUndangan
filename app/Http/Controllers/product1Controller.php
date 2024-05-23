@@ -29,12 +29,28 @@ class product1Controller extends Controller
       $p2['story'] = stori::where('undangan_id', $id)->get();
       $p2['tanggal'] = date("l d F Y", strtotime($tanggal));
 
+
+      // memanggil foto
+      $p2['foto_l'] = foto::where('undangan_id', $id)->where('noFoto', 1)->pluck('foto')->first();
+      $p2['foto_p'] = foto::where('undangan_id', $id)->where('noFoto', 2)->pluck('foto')->first();
+      $p2['album'] = Foto::where('undangan_id', $id)->where('noFoto', '>', 2)->get();
+
       // memisahkan data akad dan resepsi
       $dataArray = Str::of($p2['data']->akadResepsi)->explode('-');
       $p2['akad'] = $dataArray[0];
       $p2['resepsi'] = $dataArray[1];
 
+      // memisahkan data rekening
+      $dataArray = Str::of($p2['data']->rekening)->explode('-');
+      $p2['rekening1'] = $dataArray[0];
+      $p2['rekening2'] = $dataArray[1];
 
+
+      // waktu
+      $dataArray = Str::of($data->tanggal)->explode('-');
+      $p2['tahun'] = $dataArray[0];
+      $p2['bulan'] = $dataArray[1];
+      $p2['hari'] = $dataArray[2];
 
 
 
@@ -155,6 +171,39 @@ class product1Controller extends Controller
 
       stori::create([
          'undangan_id' => $id,
+         'No' => $request->input('No'),
+         'foto' => $filename,
+         'title' => $request->input('title'),
+         'tanggal' => $request->input('tanggal'),
+         'deskripsi' => $request->input('deskripsi'),
+      ]);
+      return redirect('ekonomi/' . $id)->with('success', 'data Berhasil Terkirim');
+   }
+
+   public function update($id, Request $request)
+   {
+
+      $delete = stori::find($id);
+
+      $request->validate([
+         'No' => 'required',
+         'foto' => 'required',
+         'title' => 'required',
+         'tanggal' => 'required',
+         'deskripsi' => 'required',
+      ]);
+
+      if ($request->hasFile('foto')) {
+         Storage::disk('public')->delete('assets/' . $delete->foto);
+      }
+
+      $image = $request->file('foto');
+      $filename = date('Y-m-d_H-i-s') . '_' . microtime(true) . '_' . $image->getClientOriginalName();
+      $path = 'assets/' . $filename;
+      Storage::disk('public')->put($path, file_get_contents($image));
+
+
+      stori::where('undangan_id', $id)->update([
          'No' => $request->input('No'),
          'foto' => $filename,
          'title' => $request->input('title'),

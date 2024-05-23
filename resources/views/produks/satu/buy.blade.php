@@ -100,7 +100,7 @@
                             </p>
                         </div>
                         <div class="col-4">
-                            <img src="{{ asset('produk1') }}/img/nazma/nazma.jpg" alt=""
+                            <img src="{{ asset('storage/assets/' . $foto_l) }}" alt=""
                                 class="img-resposive rounded-circle" />
                         </div>
                     </div>
@@ -109,7 +109,7 @@
                 <div class="col-lg-6">
                     <div class="row">
                         <div class="col-4">
-                            <img src="{{ asset('produk1') }}/img/nazma/uceh.jpg" alt=""
+                            <img src="{{ asset('storage/assets/' . $foto_p) }}" alt=""
                                 class="img-resposive rounded-circle" />
                         </div>
                         <div class="col-8">
@@ -145,7 +145,7 @@
                             <div class="row justify-content-center">
                                 <div class="col-md-6">
                                     <i class="bi bi-clock-history d-block"> </i>
-                                    <span>{{ $data->akad }} s/d selesai</span>
+                                    <span>{{ $akad }} s/d selesai</span>
                                 </div>
                                 <div class="col-md-6">
                                     <i class="bi bi-calendar2-week d-block"></i>
@@ -163,7 +163,7 @@
                             <div class="row justify-content-center">
                                 <div class="col-md-6">
                                     <i class="bi bi-clock-history d-block"> </i>
-                                    <span>{{ $data->resepsi }} s/d selesai </span>
+                                    <span>{{ $resepsi }} s/d selesai </span>
                                 </div>
                                 <div class="col-md-6">
                                     <i class="bi bi-calendar2-week d-block"></i>
@@ -241,48 +241,15 @@
                     </div>
                 </div>
                 <div class="justify-content-center row row-cols-md-3 row-cols-lg-4 row-cols-sm-2 row-cols-1">
-                    <div class="col mt-3">
-                        <a href="{{ asset('produk1') }}/img/nazma/IMG_20231220_121435.jpg" data-toggle="lightbox"
-                            data-caption="image 2" data-gallery="myfoto">
-                            <img src="{{ asset('produk1') }}/img/nazma/IMG_20231220_121435.jpg" alt=""
-                                class="img-fluid w-100 rounded" />
-                        </a>
-                    </div>
-                    <div class="col mt-3">
-                        <a href="{{ asset('produk1') }}/img/nazma/IMG_20231220_123648.jpg" data-toggle="lightbox"
-                            data-caption="image 3" data-gallery="myfoto">
-                            <img src="{{ asset('produk1') }}/img/nazma/IMG_20231220_123648.jpg" alt=""
-                                class="{{ asset('produk1') }}/img-fluid w-100 rounded" />
-                        </a>
-                    </div>
-                    <div class="col mt-3">
-                        <a href="{{ asset('produk1') }}/img/nazma/IMG_20231220_121246.jpg" data-toggle="lightbox"
-                            data-caption="image1" data-gallery="myfoto">
-                            <img src="{{ asset('produk1') }}/img/nazma/IMG_20231220_121246.jpg" alt=""
-                                class="img-fluid w-100 rounded" />
-                        </a>
-                    </div>
-                    <div class="col mt-3">
-                        <a href="{{ asset('produk1') }}/img/nazma/IMG_20231220_121435.jpg" data-toggle="lightbox"
-                            data-caption="image 2" data-gallery="myfoto">
-                            <img src="{{ asset('produk1') }}/img/nazma/IMG_20231220_121435.jpg" alt=""
-                                class="img-fluid w-100 rounded" />
-                        </a>
-                    </div>
-                    <div class="col mt-3">
-                        <a href="{{ asset('produk1') }}/img/nazma/IMG_20231220_121246.jpg" data-toggle="lightbox"
-                            data-caption="image1" data-gallery="myfoto">
-                            <img src="{{ asset('produk1') }}/img/nazma/IMG_20231220_121246.jpg" alt=""
-                                class="img-fluid w-100 rounded" />
-                        </a>
-                    </div>
-                    <div class="col mt-3">
-                        <a href="{{ asset('produk1') }}/img/nazma/IMG_20231220_123648.jpg" data-toggle="lightbox"
-                            data-caption="image 3" data-gallery="myfoto">
-                            <img src="{{ asset('produk1') }}/img/nazma/IMG_20231220_123648.jpg" alt=""
-                                class="img-fluid w-100 rounded" />
-                        </a>
-                    </div>
+                    @foreach ($album as $albums)
+                        <div class="col mt-3">
+                            <a href="{{ asset('storage/assets/' . $albums->foto) }}" data-toggle="lightbox"
+                                data-caption="image 2" data-gallery="myfoto">
+                                <img src="{{ asset('storage/assets/' . $albums->foto) }}" alt=""
+                                    class="img-fluid w-100 rounded" />
+                            </a>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -363,11 +330,11 @@
                         <ul class="list-group">
                             <li class="list-group-item">
                                 <div class="fw-bold">BRI</div>
-                                32030609999-MR.Fadli.s.T
+                                {{ $rekening1 }}
                             </li>
                             <li class="list-group-item">
                                 <div class="fw-bold">Madiri</div>
-                                32030609999-MR.Fadli.s.T
+                                {{ $rekening2 }}
                             </li>
                             <li class="list-group-item">
                                 <div class="fw-bold">Qr shoppe</div>
@@ -446,7 +413,7 @@
                             @csrf
                             <input type="text" name="No" value="{{ $data->No }}" hidden>
                             <div class="mb-3">
-                                <label for="foto" class="form-label">upload ulang foto 1/1</label>
+                                <label for="foto" class="form-label"><b>upload ulang</b> foto 1/1</label>
                                 <input type="file" name="foto" class="form-control" id="foto">
                             </div>
                             <div class="mb-3">
@@ -506,11 +473,19 @@
         integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous">
     </script>
     <script>
+        // Data dari PHP ke JavaScript
+        var dateData = {
+            year: {{ $tahun }},
+            month: {{ $bulan }},
+            day: {{ $hari }},
+            hours: 0 // Anda bisa tambahkan properti lain sesuai kebutuhan
+        };
+
         simplyCountdown(".simply-countdown", {
-            year: 2025, // required
-            month: 1, // required
-            day: 21, // required
-            hours: 9, // Default is 0 [0-23] integer
+            year: dateData.year,
+            month: dateData.month,
+            day: dateData.day,
+            hours: 0,
             words: {
                 //words displayed into the countdown
                 days: {

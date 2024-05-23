@@ -55,6 +55,7 @@ Route::delete('dua/{id}', [produkController::class, 'destroy']);
 Route::get('ekonomi/{id}', [product1Controller::class, 'index']);
 Route::get('satu', [product1Controller::class, 'produk1']);
 Route::post('createsatu', [product1Controller::class, 'create']);
+Route::post('editstory/{id}', [product1Controller::class, 'update']);
 Route::post('story/{id}', [product1Controller::class, 'story']);
 
 

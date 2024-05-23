@@ -82,7 +82,7 @@
                         <div class="row">
                             <div class="form-group col-6">
                                 <label for="exampleInputEmail1">Rekening 1</label>
-                                <input type="text" name="rekenin1" class="form-control" id="exampleInputEmail1"
+                                <input type="text" name="rekening1" class="form-control" id="exampleInputEmail1"
                                     placeholder="Nama Pengantin">
                             </div>
                             <div class="form-group col-6">
@@ -255,7 +255,7 @@
                         <div class="row">
                             <div class="form-group col-6">
                                 <label for="exampleInputEmail1">Rekening 1</label>
-                                <input type="text" name="rekenin1" class="form-control" id="exampleInputEmail1"
+                                <input type="text" name="rekening1" class="form-control" id="exampleInputEmail1"
                                     placeholder="Nama Pengantin">
                             </div>
                             <div class="form-group col-6">
