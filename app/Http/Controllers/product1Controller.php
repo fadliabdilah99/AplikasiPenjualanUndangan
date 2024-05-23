@@ -26,6 +26,7 @@ class product1Controller extends Controller
 
       // mengirim data
       $p2['data'] = pdua::where('id', $id)->first();
+      $p2['story'] = stori::where('undangan_id', $id)->get();
       $p2['tanggal'] = date("l d F Y", strtotime($tanggal));
 
       // memisahkan data akad dan resepsi
@@ -139,7 +140,6 @@ class product1Controller extends Controller
    public function story($id, Request $request)
    {
       $request->validate([
-         'undangan_id' => 'required',
          'No' => 'required',
          'foto' => 'required',
          'title' => 'required',

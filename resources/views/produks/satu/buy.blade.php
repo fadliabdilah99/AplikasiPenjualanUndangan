@@ -4,9 +4,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Uceh And Nazma</title>
-    <script src="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/js/adminlte.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/admin-lte@3.2/dist/css/adminlte.min.css">
+    <title>{{ $data->pengantin_l }} & {{ $data->pengantin_p }}.decloop</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous" />
     <link rel="stylesheet" href="{{ asset('produk1') }}/style/style.css" />
@@ -27,22 +25,23 @@
         <main>
 
             @if (session('success'))
-                <div id="toastsContainerTopRight" class="toasts-top-right fixed">
-                    <div class="toast bg-info fade show" role="alert" aria-live="assertive" aria-atomic="true">
-                        <div class="toast-header"><strong class="mr-auto">Info</strong><small>Important</small></div>
-                        <div class="toast-body"> {{ session('success') }}</div>
-                    </div>
+                <div class="alert alert-success w-50 mx-auto position-fixed top-50 start-50 translate-middle"
+                    role="alert">
+                    <h5>{{ session('success') }}</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                 </div>
             @endif
             @if ($errors->any())
-                <div class="alert alert-danger alert-dismissible">
-                    <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
-                    <h5><i class="icon fas fa-ban"></i>Data Gagal Disimpan!</h5>
+                <div class="alert alert-danger w-50 mx-auto position-fixed top-50 start-50 translate-middle"
+                    role="alert">
+                    <h5>Gagal menyimpan data</h5>
                     <ul>
                         @foreach ($errors->all() as $error)
                             <li>{{ $error }}</li>
                         @endforeach
                     </ul>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+
                 </div>
             @endif
 
@@ -97,7 +96,7 @@
                             <h3>{{ $data->pengantin_l }}</h3>
                             <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, excepturi labore perspiciatis eum nam iusto?</p> -->
                             <p>
-                                putra dari {{ $data->ortu_l }}
+                                putra dari <br>{{ $data->ortu_l }}
                             </p>
                         </div>
                         <div class="col-4">
@@ -117,7 +116,7 @@
                             <h3>{{ $data->pengantin_p }}</h3>
                             <!-- <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Debitis, excepturi labore perspiciatis eum nam iusto?</p> -->
                             <p>
-                                putra dari {{ $data->ortu_p }}
+                                putri dari <br>{{ $data->ortu_p }}
                             </p>
                         </div>
                     </div>
@@ -194,116 +193,37 @@
                         data-bs-target="#exampleModal">
                         Add Your Story
                     </button>
-
-                    <!-- Modal -->
-                    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog modal-dialog modal-dialog-centered">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                    <form action="{{ url('story/' . $data->id) }}" method="POST"
-                                        enctype="multipart/form-data">
-                                        @csrf
-                                        <input type="text" name="No" value="{{ $data->No }}" hidden>
-                                        <div class="mb-3">
-                                            <label for="foto" class="form-label">foto 1/1</label>
-                                            <input type="file" name="foto" class="form-control"
-                                                id="foto">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="exampleInputEmail1" class="form-label">Title</label>
-                                            <input type="text" class="form-control" name="title"
-                                                id="exampleInputEmail1">
-                                        </div>
-                                        <div class="mb-3">
-                                            <label for="tanggal" class="form-label">Tanggal/Tempat</label>
-                                            <input type="text" class="form-control" name="tanggal"
-                                                id="tanggal">
-                                        </div>
-                                        <div class="form-floating">
-                                            <textarea class="form-control" name="deskripsi" placeholder="Leave a comment here" id="floatingTextarea2"
-                                                style="height: 100px"></textarea>
-                                            <label for="floatingTextarea2 fs-6">cerita cintaku</label>
-                                        </div>
-                                        <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary"
-                                                data-bs-dismiss="modal">Close</button>
-                                            <button type="submit" class="btn btn-primary">Save changes</button>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
                 @endif
                 <div class="col">
                     <ul class="timeline">
-                        <li>
-                            <div class="timeline-img"
-                                style="background: url('{{ asset('produk1') }}/img/nazma/story3.jpg'); background-size: cover; width: 100px; height: 100px;">
-                            </div>
-                            <div class="timeline-panel">
-                                <div class="timeline-heading">
-                                    <h3>pertama Kenal</h3>
-                                    <span>Di Akhir September 2022</span>
+                        <?php $no = 0; ?>
+                        @foreach ($story as $storys)
+                            <?php $no++; ?>
+                            <li
+                                class="
+                            @if ($no % 2 == 0) timeline
+                            @else
+                                timeline-kanan @endif
+                            ">
+                                <div class="timeline-img"
+                                    style="background: url('{{ asset('storage/assets' . '/' . $storys->foto) }}'); background-size: cover; width: 100px; height: 100px;">
                                 </div>
-                                <div class="timeline-body">
-                                    <p>Liburan akhir tahun keluarga di salah satu kota di jawabarat dengan menggunakan
-                                        jasa rental yang ia punya di sanalah awal mula kenal. </p>
+                                <div class="timeline-panel">
+                                    <div class="timeline-heading">
+                                        <h3>{{ $storys->title }}</h3>
+                                        <span>{{ $storys->tanggal }}</span>
+                                    </div>
+                                    <div class="timeline-body">
+                                        <p>{{ $storys->deskripsi }}</p>
+                                    </div>
+                                    @if ($data->status == 'edit')
+                                        <button class="btn btn-secondary"><i class="bi bi-pencil-square"
+                                                data-bs-toggle="modal"
+                                                data-bs-target="#edit{{ $storys->id }}">edit</i></button>
+                                    @endif
                                 </div>
-                            </div>
-                        </li>
-                        <li class="timeline-kanan">
-                            <div class="timeline-img"
-                                style="background: url('{{ asset('produk1') }}/img/nazma/story3.jpg'); background-size: cover; width: 100px; height: 100px;">
-                            </div>
-                            <div class="timeline-panel">
-                                <div class="timeline-heading">
-                                    <h3>Jadian</h3>
-                                    <span>12 Februari 2023</span>
-                                </div>
-                                <div class="timeline-body">
-                                    <p>kami berlanjut komunikasi di salah satu media sosial dan di sanalah kita
-                                        berkenalan lebih dekat, bertukar cerita hingga rasa dan memulai cerita baru
-                                        tersebut.</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="timeline">
-                            <div class="timeline-img"
-                                style="background: url('{{ asset('produk1') }}/img/nazma/story3.jpg'); background-size: cover; width: 100px; height: 100px;">
-                            </div>
-                            <div class="timeline-panel">
-                                <div class="timeline-heading">
-                                    <h3>Tunangan</h3>
-                                    <span>30 April 2023</span>
-                                </div>
-                                <div class="timeline-body">
-                                    <p>untuk membuktikan cinta, dengan rasa nyaman dan keyakinan yang kita miliki kami
-                                        memutuskan untuk berlanjut ke jenjang yang lebih serius.</p>
-                                </div>
-                            </div>
-                        </li>
-                        <li class="timeline-kanan">
-                            <div class="timeline-img"
-                                style="background: url('{{ asset('produk1') }}/img/nazma/story3.jpg'); background-size: cover; width: 100px; height: 100px;">
-                            </div>
-                            <div class="timeline-panel">
-                                <div class="timeline-heading">
-                                    <h3>nikah</h3>
-                                    <span>21 Januari 2024</span>
-                                </div>
-                                <div class="timeline-body">
-                                    <p>Bismillah dan di hari ini cerita kita berlanjut sampai tua dan jannah-Nya
-                                        bersama.</p>
-                                </div>
-                            </div>
-                        </li>
+                            </li>
+                        @endforeach
                     </ul>
                 </div>
             </div>
@@ -459,6 +379,106 @@
                 </div>
             </div>
     </section>
+
+
+
+
+
+
+
+
+    <!-- Modal -->
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="{{ url('story/' . $data->id) }}" method="POST" enctype="multipart/form-data">
+                        @csrf
+                        <input type="text" name="No" value="{{ $data->No }}" hidden>
+                        <div class="mb-3">
+                            <label for="foto" class="form-label">foto 1/1</label>
+                            <input type="file" name="foto" class="form-control" id="foto">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Title</label>
+                            <input type="text" class="form-control" name="title" id="exampleInputEmail1">
+                        </div>
+                        <div class="mb-3">
+                            <label for="tanggal" class="form-label">Tanggal/Tempat</label>
+                            <input type="text" class="form-control" name="tanggal" id="tanggal">
+                        </div>
+                        <div class="form-floating">
+                            <textarea class="form-control" name="deskripsi" placeholder="Leave a comment here" id="floatingTextarea2"
+                                style="height: 100px"></textarea>
+                            <label for="floatingTextarea2 fs-6">cerita cintaku</label>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="submit" class="btn btn-primary">Save changes</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    @foreach ($story as $edit)
+        <!-- Modal edit-->
+        <div class="modal fade" id="edit{{ $edit->id }}" tabindex="-1" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-dialog modal-dialog-centered">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                            aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <form action="{{ url('editstory/' . $data->id) }}" method="POST"
+                            enctype="multipart/form-data">
+                            @csrf
+                            <input type="text" name="No" value="{{ $data->No }}" hidden>
+                            <div class="mb-3">
+                                <label for="foto" class="form-label">upload ulang foto 1/1</label>
+                                <input type="file" name="foto" class="form-control" id="foto">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputEmail1" class="form-label">Title</label>
+                                <input type="text" class="form-control" value="{{ $edit->title }}"
+                                    name="title" id="exampleInputEmail1">
+                            </div>
+                            <div class="mb-3">
+                                <label for="tanggal" class="form-label">Tanggal/Tempat</label>
+                                <input type="text" class="form-control" value="{{ $edit->tanggal }}"
+                                    name="tanggal" id="tanggal">
+                            </div>
+                            <div class="form-floating">
+                                <textarea class="form-control" name="deskripsi" placeholder="Leave a comment here" id="floatingTextarea2"
+                                    style="height: 100px"></textarea>
+                                <label for="floatingTextarea2 fs-6">cerita cintaku</label>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary"
+                                    data-bs-dismiss="modal">Close</button>
+                                <button type="submit" class="btn btn-primary">Save changes</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    @endforeach
+
+
+
+
 
     <footer>
         <div class="container">
