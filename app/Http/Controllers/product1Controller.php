@@ -6,6 +6,7 @@ use App\Models\foto;
 use App\Models\pdua;
 use App\Models\psatu;
 use App\Models\stori;
+use App\Models\ucapan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -26,6 +27,8 @@ class product1Controller extends Controller
 
       // mengirim data
       $p2['data'] = pdua::where('id', $id)->first();
+      $p2['ucapan'] = ucapan::where('undangan_id', $id)->paginate(10);
+      $p2['totalucapan'] = ucapan::where('undangan_id', $id)->count();
       $p2['story'] = stori::where('undangan_id', $id)->get();
       $p2['tanggal'] = date("l d F Y", strtotime($tanggal));
 
@@ -53,19 +56,22 @@ class product1Controller extends Controller
       $p2['hari'] = $dataArray[2];
 
 
-
-      if (auth()->check()) {
-         if ($status == 'edit' && $data->user_id == auth()->user()->id) {
-            return view('produks.satu.buy')->with($p2);
+      if ($data->No == 1) {
+         if (auth()->check()) {
+            if ($status == 'edit' && $data->user_id == auth()->user()->id) {
+               return view('produks.satu.buy')->with($p2);
+            } else {
+               return view('produks.satu.buy')->with($p2);
+            }
          } else {
-            return view('produks.satu.buy')->with($p2);
+            if ($status == 'public') {
+               return view('produks.satu.buy')->with($p2);
+            } else {
+               return view('produks.error');
+            }
          }
-      } else {
-         if ($status == 'public') {
-            return view('produks.satu.buy')->with($p2);
-         } else {
-            return view('produks.error');
-         }
+      }else{
+         return view('produks.error');
       }
    }
 
@@ -211,5 +217,19 @@ class product1Controller extends Controller
          'deskripsi' => $request->input('deskripsi'),
       ]);
       return redirect('ekonomi/' . $id)->with('success', 'data Berhasil Terkirim');
+   }
+
+   public function ucapan(Request $request)
+   {
+      $request->validate([
+         'No' => 'required',
+         'undangan_id' => 'required',
+         'nama' => 'required',
+         'kehadiran' => 'required',
+         'ucapan' => 'required',
+      ]);
+
+      ucapan::create($request->all());
+      return redirect('ekonomi/' . $request->undangan_id)->with('success', 'data Berhasil Terkirim');
    }
 }

@@ -256,10 +256,10 @@
     </section>
     <section class="p-3 rsvp" id="rsvp">
         <div class="container">
-            <form action="{{ url('ucapanpdua') }}" method="POST">
+            <form action="{{ url('ucapanpsatu') }}" method="POST">
                 @csrf
-                <input type="number" name="No" value="" hidden>
-                <input type="number" name="undangan_id" value="" hidden>
+                <input type="number" name="No" value="{{ $data->No }}" hidden>
+                <input type="number" name="undangan_id" value="{{ $data->id }}" hidden>
                 <div class="card-body border rounded-4 shadow p-3">
                     <h1 class="font-ucapan" style="font-size: 3rem">
                         Ucapan & Doa
@@ -271,6 +271,7 @@
                         <input type="text" name="nama" class="form-control shadow-sm" id="form-nama"
                             placeholder="Isikan Nama Anda" />
                     </div>
+                    
 
                     <div class="mb-3">
                         <label for="form-kehadiran" class="form-label" id="label-kehadiran">Kehadiran</label>
@@ -283,7 +284,11 @@
                         </select>
                     </div>
 
-
+                    <div class="mb-3">
+                        <label for="form-nama" class="form-label">Nama</label>
+                        <textarea name="ucapan" class="form-control shadow-sm" id="form-nama"
+                            placeholder="Ucapan Doa" style="height: 100px"></textarea>
+                    </div>
 
                     <div class="d-flex">
                         <button class="flex-fill btn btn-primary btn-sm rounded-3 shadow m-1"
@@ -295,22 +300,21 @@
             </form>
             <div class="container rounded pb-2 my-5 border">
                 <h1 class="font-ucapan">ucapan</h1>
-                <p class="blockquote-footer mt-1">Komen 1</p>
-                {{-- @foreach ($ucapan as $ucapan) --}}
+                <p class="blockquote-footer mt-1">total ucapan {{$totalucapan}}</p>
+                @foreach ($ucapan as $ucapan)
                 <div class="card mt-3 bg-dark px-5">
                     <div class="card-body">
                         <blockquote class="blockquote mb-0">
-                            <p>contoh ucapan</p>
-                            <p class="blockquote-footer">Lorem ipsum, dolor sit amet consectetur adipisicing elit.
-                                Reiciendis error sequi quisquam doloribus doloremque?</p>
+                            <p>{{$ucapan->nama}}</p>
+                            <p class="blockquote-footer">{{$ucapan->ucapan}}</p>
                         </blockquote>
                     </div>
                 </div>
-                {{-- @endforeach --}}
+                @endforeach
 
-                {{-- @if ($totalucapan > 10)
+                @if ($totalucapan > 10)
                     {{ $ucapan->links() }}
-                @endif --}}
+                @endif
 
 
             </div>
@@ -322,8 +326,7 @@
                 <div class="col-md-8 col-10 text-center">
                     <span>ungkapan Tanda kasih</span>
                     <h2>Kirim Hadiah</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem est esse vitae veniam libero
-                        ducimus optio aperiam, odio vero placeat!</p>
+                    <p>Dengan tulus kami mengucapkan terima kasih atas hadiah dan doa restu yang telah diberikan. Kehadiran dan perhatian Anda sangat berarti bagi kami.</p>
                 </div>
                 <div class="row justify-content-center text-center">
                     <div class="col-md-6">
@@ -335,11 +338,6 @@
                             <li class="list-group-item">
                                 <div class="fw-bold">Madiri</div>
                                 {{ $rekening2 }}
-                            </li>
-                            <li class="list-group-item">
-                                <div class="fw-bold">Qr shoppe</div>
-                                <img src="{{ asset('produk1') }}/img/no_markReactNative-snapshot-image.png"
-                                    alt="" class="img-thumbnail" width="150">
                             </li>
                         </ul>
                     </div>

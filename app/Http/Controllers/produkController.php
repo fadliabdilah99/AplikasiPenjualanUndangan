@@ -51,19 +51,22 @@ class produkController extends Controller
         $p2['album'] = Foto::where('undangan_id', $id)->where('noFoto', '>', 2)->get();
 
 
-
-        if (auth()->check()) {
-            if ($status == 'edit' && $data->user_id == auth()->user()->id) {
-                return view('produks.dua.buy')->with($p2);
+        if ($data->No == 2) {
+            if (auth()->check()) {
+                if ($status == 'edit' && $data->user_id == auth()->user()->id) {
+                    return view('produks.dua.buy')->with($p2);
+                } else {
+                    return view('produks.dua.buy')->with($p2);
+                }
             } else {
-                return view('produks.dua.buy')->with($p2);
+                if ($status == 'public') {
+                    return view('produks.dua.buy')->with($p2);
+                } else {
+                    return view('produks.error');
+                }
             }
-        } else {
-            if ($status == 'public') {
-                return view('produks.dua.buy')->with($p2);
-            } else {
-                return view('produks.error');
-            }
+        }else{
+            return view('produks.error');
         }
     }
 
@@ -193,6 +196,8 @@ class produkController extends Controller
     public function ucapan(Request $request)
     {
         $request->validate([
+            'No' => 'required',
+            'undangan_id' => 'required',
             'nama' => 'required',
             'kehadiran' => 'required',
             'ucapan' => 'required',

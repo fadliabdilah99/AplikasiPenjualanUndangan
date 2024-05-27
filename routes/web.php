@@ -57,6 +57,7 @@ Route::get('satu', [product1Controller::class, 'produk1']);
 Route::post('createsatu', [product1Controller::class, 'create']);
 Route::post('editstory/{id}', [product1Controller::class, 'update']);
 Route::post('story/{id}', [product1Controller::class, 'story']);
+Route::post('ucapanpsatu', [product1Controller::class, 'ucapan']);
 
 
 
