@@ -89,6 +89,7 @@ class produkController extends Controller
             'alamat' => 'nullable|string|max:255',
             'rekening1' => 'nullable|string|max:255',
             'rekening2' => 'nullable|string|max:255',
+            'foto2' => 'nullable|image|mimes:jpeg,png,jpg,gif|dimensions:ratio=1/1',
             'foto_l' => 'nullable|image|mimes:jpeg,png,jpg,gif|dimensions:ratio=1/1',
             'foto_p' => 'nullable|image|mimes:jpeg,png,jpg,gif|dimensions:ratio=1/1',
             'photos.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|dimensions:ratio=16/9|max:6',
@@ -115,10 +116,10 @@ class produkController extends Controller
         $path = 'assets/' . $filename_l;
         Storage::disk('public')->put($path, file_get_contents($image));
 
-        // $image = $request->file('foto_pasangan');
-        // $filename_pasangan = date('Y-m-d') . $image->getClientOriginalName();
-        // $path = 'assets/' . $filename_pasangan;
-        // Storage::disk('public')->put($path, file_get_contents($image));
+        $image = $request->file('foto2');
+        $filename_pasangan = date('Y-m-d') . $image->getClientOriginalName();
+        $path = 'assets/' . $filename_pasangan;
+        Storage::disk('public')->put($path, file_get_contents($image));
 
 
         $image = $request->file('foto_p');
@@ -141,12 +142,12 @@ class produkController extends Controller
         ]);
 
 
-        // foto::create([
-        //     'No' => 2,
-        //     'undangan_id' => $pdua->id,
-        //     'foto' => $filename_pasangan,
-        //     'noFoto' => 88,
-        // ]);
+        foto::create([
+            'No' => 2,
+            'undangan_id' => $pdua->id,
+            'foto' => $filename_pasangan,
+            'noFoto' => 88,
+        ]);
 
 
         // foto album
