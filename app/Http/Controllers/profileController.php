@@ -16,7 +16,7 @@ class profileController extends Controller
 
         // produk2
         $data['produk2'] = pdua::where(function ($query) use ($id) {
-            if ($id == 4) {
+            if ($id == 2) {
                 // Jika id = 4, ambil semua data
                 $query->whereNotNull('pduas.id');
             } else {
@@ -30,6 +30,10 @@ class profileController extends Controller
             ->get();
 
         $data['produkAll'] = produk::get();
+        $data['belumdibayar'] = pdua::where('status', 'edit')->count();
+        $data['terjual'] = pdua::where('status', 'public')->count();
+        $data['pendapatan'] = pdua::where('status', 'public')->join('produks', 'pduas.No', '=', 'produks.id')
+            ->sum('produks.harga');
         $data['date'] = date("Y-m-d");
 
 

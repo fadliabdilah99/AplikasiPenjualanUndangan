@@ -1,571 +1,467 @@
-<!doctype html>
-<html lang="en" data-bs-theme="auto">
+<!DOCTYPE HTML>
+<!--
+ Helios by HTML5 UP
+ html5up.net | @ajlkn
+ Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
 
 <head>
-    <script src="../assets/js/color-modes.js"></script>
-
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
-    <meta name="generator" content="Hugo 0.122.0">
-    <title>Undangan pernikahan</title>
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
-    <link rel="canonical" href="https://getbootstrap.com/docs/5.3/examples/carousel/">
-
-
-
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@docsearch/css@3">
+    <title>Helios by HTML5 UP</title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="{{ asset('assets-home') }}/css/main.css" />
+    <noscript>
+        <link rel="stylesheet" href="{{ asset('assets-home') }}/css/noscript.css" />
+    </noscript>
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
-
-    <link rel="stylesheet" href="{{ asset('assets') }}/dist/css/adminlte.min.css">
-    <style>
-        body {
-            padding-top: 3rem;
-            padding-bottom: 3rem;
-            color: rgb(var(--bs-tertiary-color-rgb));
-        }
-
-        .carousel {
-            margin-bottom: 4rem;
-        }
-
-        .carousel-caption {
-            bottom: 3rem;
-            z-index: 10;
-        }
-
-        .carousel-item {
-            height: 32rem;
-        }
-
-
-        .marketing .col-lg-4 p {
-            margin-right: .75rem;
-            margin-left: .75rem;
-        }
-
-
-        .featurette-divider {
-            margin: 5rem 0;
-
-        }
-
-
-        .featurette-heading {
-            letter-spacing: -.05rem;
-        }
-
-        @media (min-width: 40em) {
-
-            .carousel-caption p {
-                margin-bottom: 1.25rem;
-                font-size: 1.25rem;
-                line-height: 1.4;
-            }
-
-            .featurette-heading {
-                font-size: 50px;
-            }
-        }
-
-        @media (min-width: 62em) {
-            .featurette-heading {
-                margin-top: 7rem;
-            }
-        }
-
-
-
-        .bd-placeholder-img {
-            font-size: 1.125rem;
-            text-anchor: middle;
-            -webkit-user-select: none;
-            -moz-user-select: none;
-            user-select: none;
-        }
-
-        @media (min-width: 768px) {
-            .bd-placeholder-img-lg {
-                font-size: 3.5rem;
-            }
-        }
-
-        .b-example-divider {
-            width: 100%;
-            height: 3rem;
-            background-color: rgba(0, 0, 0, .1);
-            border: solid rgba(0, 0, 0, .15);
-            border-width: 1px 0;
-            box-shadow: inset 0 .5em 1.5em rgba(0, 0, 0, .1), inset 0 .125em .5em rgba(0, 0, 0, .15);
-        }
-
-        .b-example-vr {
-            flex-shrink: 0;
-            width: 1.5rem;
-            height: 100vh;
-        }
-
-        .bi {
-            vertical-align: -.125em;
-            fill: currentColor;
-        }
-
-        .nav-scroller {
-            position: relative;
-            z-index: 2;
-            height: 2.75rem;
-            overflow-y: hidden;
-        }
-
-        .nav-scroller .nav {
-            display: flex;
-            flex-wrap: nowrap;
-            padding-bottom: 1rem;
-            margin-top: -1px;
-            overflow-x: auto;
-            text-align: center;
-            white-space: nowrap;
-            -webkit-overflow-scrolling: touch;
-        }
-
-        .btn-bd-primary {
-            --bd-violet-bg: #712cf9;
-            --bd-violet-rgb: 112.520718, 44.062154, 249.437846;
-
-            --bs-btn-font-weight: 600;
-            --bs-btn-color: var(--bs-white);
-            --bs-btn-bg: var(--bd-violet-bg);
-            --bs-btn-border-color: var(--bd-violet-bg);
-            --bs-btn-hover-color: var(--bs-white);
-            --bs-btn-hover-bg: #6528e0;
-            --bs-btn-hover-border-color: #6528e0;
-            --bs-btn-focus-shadow-rgb: var(--bd-violet-rgb);
-            --bs-btn-active-color: var(--bs-btn-hover-color);
-            --bs-btn-active-bg: #5a23c8;
-            --bs-btn-active-border-color: #5a23c8;
-        }
-
-        .bd-mode-toggle {
-            z-index: 1500;
-        }
-
-        .bd-mode-toggle .dropdown-menu .active .bi {
-            display: block !important;
-        }
-    </style>
-
-
-    <!-- Custom styles for this template -->
-    <link href="carousel.css" rel="stylesheet">
 </head>
 
-<body>
+<body class="homepage is-preload">
+    <div id="page-wrapper">
 
+        <!-- Header -->
+        <div id="header">
 
-
-
-    <!-- Button trigger modal -->
-
-
-    @include('home.modal')
-
-
-
-
-    <header data-bs-theme="dark">
-        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
-            <div class="container-fluid">
-                <a class="navbar-brand" href="#">Carousel</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse"
-                    aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="collapse navbar-collapse " id="navbarCollapse">
-                    <ul class="navbar-nav me-auto mb-2 mb-md-0">
-                        <li class="nav-item">
-                            @if (Auth::check())
-                        <li class="nav-item">
-                            <a class="btn btn-secondary" aria-current="page"
-                                href="profile/{{ auth()->user()->id }}  ">Undangan anda</a>
-                        </li>
-                    @else
-                    </ul>
-
-                    <a class="btn btn-outline-light mx-1" href="login">Login</a>
-                    <a class="btn btn-light mx-1" href="register">Register</a>
-                    @endif
-                    <div class="d-flex justify-content-end mx-3">
-
-                        {{-- <h1>hello</h1> --}}
-                        @if (Auth::check())
-                            <a class="btn btn-outline-light" href="logout">LogOut</a>
-                            <a href="message" class="text-light"><i class="bi bi-envelope fs-4 px-2"><span
-                                        class="text-warning">
-                                        @if ($count > 0)
-                                            {{ $count }}
-                                        @else
-                                        @endif
-                                    </span></i></a>
-                        @endif
-                    </div>
-
-                </div>
-            </div>
-        </nav>
-    </header>
-
-    <main>
-
-        <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
-            <div class="carousel-indicators">
-                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active"
-                    aria-current="true" aria-label="Slide 1"></button>
-                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3"></button>
-            </div>
-            <div class="carousel-inner">
-                <div class="carousel-item active">
-                    <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
-                        aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-                        <rect width="100%" height="100%" fill="var(--bs-secondary-color)" />
-                    </svg>
-                    <div class="container">
-                        <div class="carousel-caption text-start">
-                            @if (auth::check())
-                                <h1>Hello {{ auth::user()->name }}</h1>
-                            @else
-                                <h1>Anda belum login, Belum punya akun?</h1>
-                                <p><a class="btn btn-lg btn-primary" href="login">Login</a></p>
-                            @endif
-                            <p class="opacity-75">Some representative placeholder content for the first slide of the
-                                carousel.</p>
+            <!-- Inner -->
+            <div class="inner">
+                <header>
+                    <div class="typing-container">
+                        <span id="typing-text" class="fs-1"></span>
+                        <h1 class="cursor">.
+                        </h1>
+                        <div id="text-data" data-texts='["Hallo {{Auth::user()->name}}", "Solusi Undangan Anda."]' style="display: none;">
                         </div>
                     </div>
-                </div>
-                <div class="carousel-item">
-                    <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
-                        aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-                        <rect width="100%" height="100%" fill="var(--bs-secondary-color)" />
-                    </svg>
-                    <div class="container">
-                        <div class="carousel-caption">
-                            <h1>Another example headline.</h1>
-                            <p>Some representative placeholder content for the second slide of the carousel.</p>
-                            <p><a class="btn btn-lg btn-primary" href="#">Learn more</a></p>
-                        </div>
-                    </div>
-                </div>
-                <div class="carousel-item">
-                    <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"
-                        aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
-                        <rect width="100%" height="100%" fill="var(--bs-secondary-color)" />
-                    </svg>
-                    <div class="container">
-                        <div class="carousel-caption text-end">
-                            <h1>One more for good measure.</h1>
-                            <p>Some representative placeholder content for the third slide of this carousel.</p>
-                            <p><a class="btn btn-lg btn-primary" href="#">Browse gallery</a></p>
-                        </div>
-                    </div>
-                </div>
+                    <hr />
+                    <p>Another fine freebie by HTML5 UP</p>
+                </header>
+                <footer>
+                    <a href="#banner" class="button circled scrolly">Start</a>
+                </footer>
             </div>
-            <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Previous</span>
-            </button>
-            <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="visually-hidden">Next</span>
-            </button>
+
+            <!-- Nav -->
+            <nav id="nav">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li>
+                        <a href="#">Dropdown</a>
+                        <ul>
+                            <li><a href="#">Lorem ipsum dolor</a></li>
+                            <li><a href="#">Magna phasellus</a></li>
+                            <li><a href="#">Etiam dolore nisl</a></li>
+                            <li>
+                                <a href="#">And a submenu &hellip;</a>
+                                <ul>
+                                    <li><a href="#">Lorem ipsum dolor</a></li>
+                                    <li><a href="#">Phasellus consequat</a></li>
+                                    <li><a href="#">Magna phasellus</a></li>
+                                    <li><a href="#">Etiam dolore nisl</a></li>
+                                </ul>
+                            </li>
+                            <li><a href="#">Veroeros feugiat</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="left-sidebar.html">Left Sidebar</a></li>
+                    <li><a href="right-sidebar.html">Right Sidebar</a></li>
+                    <li><a href="no-sidebar.html">No Sidebar</a></li>
+                </ul>
+            </nav>
+
         </div>
-        <div class="container marketing">
 
-            <div class="row">
-                <div class="col-lg-4">
-                    <svg class="bd-placeholder-img rounded-circle" width="140" height="140"
-                        xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder"
-                        preserveAspectRatio="xMidYMid slice" focusable="false">
-                        <title>Placeholder</title>
-                        <rect width="100%" height="100%" fill="var(--bs-secondary-color)" />
-                    </svg>
-                    <h2 class="fw-normal">Heading</h2>
-                    <p>Some representative placeholder content for the three columns of text below the carousel. This is
-                        the first column.</p>
-                    <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
-                </div><!-- /.col-lg-4 -->
-                <div class="col-lg-4">
-                    <svg class="bd-placeholder-img rounded-circle" width="140" height="140"
-                        xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder"
-                        preserveAspectRatio="xMidYMid slice" focusable="false">
-                        <title>Placeholder</title>
-                        <rect width="100%" height="100%" fill="var(--bs-secondary-color)" />
-                    </svg>
-                    <h2 class="fw-normal">Heading</h2>
-                    <p>Another exciting bit of representative placeholder content. This time, we've moved on to the
-                        second column.</p>
-                    <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
-                </div><!-- /.col-lg-4 -->
-                <div class="col-lg-4">
-                    <svg class="bd-placeholder-img rounded-circle" width="140" height="140"
-                        xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder"
-                        preserveAspectRatio="xMidYMid slice" focusable="false">
-                        <title>Placeholder</title>
-                        <rect width="100%" height="100%" fill="var(--bs-secondary-color)" />
-                    </svg>
-                    <h2 class="fw-normal">Heading</h2>
-                    <p>And lastly this, the third column of representative placeholder content.</p>
-                    <p><a class="btn btn-secondary" href="#">View details &raquo;</a></p>
-                </div><!-- /.col-lg-4 -->
-            </div><!-- /.row -->
+        <!-- Banner -->
+        <section id="banner">
+            <header>
+                <h2>Hi. You're lookings at <strong>Helios</strong>.</h2>
+                <p>
+                    A (free) responsive site template by <a href="http://html5up.net">HTML5 UP</a>.
+                    Built with HTML5/CSS3 and released under the <a href="http://html5up.net/license">CCA</a> license.
+                </p>
+            </header>
+        </section>
 
+        <!-- Carousel -->
+        <section class="carousel">
+            <div class="reel">
+                <article>
+                    <a href="#" class="image featured"><img src="images/pic01.jpg" alt="" /></a>
+                    <header>
+                        <h3><a href="#">Pulvinar sagittis congues</a></h3>
+                    </header>
+                    <p>Commodo id natoque malesuada sollicitudin elit suscipit magna.</p>
+                </article>
 
+                <article>
+                    <a href="#" class="image featured"><img src="images/pic02.jpg" alt="" /></a>
+                    <header>
+                        <h3><a href="#">Fermentum sagittis proin</a></h3>
+                    </header>
+                    <p>Commodo id natoque malesuada sollicitudin elit suscipit magna.</p>
+                </article>
 
+                <article>
+                    <a href="#" class="image featured"><img src="images/pic03.jpg" alt="" /></a>
+                    <header>
+                        <h3><a href="#">Sed quis rhoncus placerat</a></h3>
+                    </header>
+                    <p>Commodo id natoque malesuada sollicitudin elit suscipit magna.</p>
+                </article>
 
+                <article>
+                    <a href="#" class="image featured"><img src="images/pic04.jpg" alt="" /></a>
+                    <header>
+                        <h3><a href="#">Ultrices urna sit lobortis</a></h3>
+                    </header>
+                    <p>Commodo id natoque malesuada sollicitudin elit suscipit magna.</p>
+                </article>
 
+                <article>
+                    <a href="#" class="image featured"><img src="images/pic05.jpg" alt="" /></a>
+                    <header>
+                        <h3><a href="#">Varius magnis sollicitudin</a></h3>
+                    </header>
+                    <p>Commodo id natoque malesuada sollicitudin elit suscipit magna.</p>
+                </article>
 
-            <!-- START THE FEATURETTES -->
-            @foreach ($produk as $item)
-                <hr class="featurette-divider">
-                <div class="row featurette">
-                    <div class="col-md-7 <?php if ($item->id % 2 == 0) {
-                        echo 'order-md-2';
-                    } ?> ">
-                        <h2 class="featurette-heading fw-normal lh-1">{{ $item->nama }} <span
-                                class="text-body-secondary">It’ll
-                                blow
-                                your mind.</span></h2>
-                        <p class="lead">{{ $item->keterangan }}.</p>
-                        <div class="d-flex">
-                            <p><a class="btn btn-secondary m-1" href="{{ $item->link }}">View details &raquo;</a>
-                            </p>
-                            @if (Auth::check())
-                                <p><button type="button" class="btn bg-success m-1 text-light"
-                                        data-bs-toggle="modal" data-bs-target="#buy{{ $item->link }}">
-                                        Buy Now
-                                    </button></p>
-                            @else
-                                <p>
-                                    <button class="btn bg-success m-1 text-light delete-data" type="button">
-                                        Buy Now
-                                    </button>
-                                </p>
-                            @endif
-                            </p>
+                <article>
+                    <a href="#" class="image featured"><img src="images/pic01.jpg" alt="" /></a>
+                    <header>
+                        <h3><a href="#">Pulvinar sagittis congue</a></h3>
+                    </header>
+                    <p>Commodo id natoque malesuada sollicitudin elit suscipit magna.</p>
+                </article>
+
+                <article>
+                    <a href="#" class="image featured"><img src="images/pic02.jpg" alt="" /></a>
+                    <header>
+                        <h3><a href="#">Fermentum sagittis proin</a></h3>
+                    </header>
+                    <p>Commodo id natoque malesuada sollicitudin elit suscipit magna.</p>
+                </article>
+
+                <article>
+                    <a href="#" class="image featured"><img src="images/pic03.jpg" alt="" /></a>
+                    <header>
+                        <h3><a href="#">Sed quis rhoncus placerat</a></h3>
+                    </header>
+                    <p>Commodo id natoque malesuada sollicitudin elit suscipit magna.</p>
+                </article>
+
+                <article>
+                    <a href="#" class="image featured"><img src="images/pic04.jpg" alt="" /></a>
+                    <header>
+                        <h3><a href="#">Ultrices urna sit lobortis</a></h3>
+                    </header>
+                    <p>Commodo id natoque malesuada sollicitudin elit suscipit magna.</p>
+                </article>
+
+                <article>
+                    <a href="#" class="image featured"><img src="images/pic05.jpg" alt="" /></a>
+                    <header>
+                        <h3><a href="#">Varius magnis sollicitudin</a></h3>
+                    </header>
+                    <p>Commodo id natoque malesuada sollicitudin elit suscipit magna.</p>
+                </article>
+
+            </div>
+        </section>
+
+        <!-- Main -->
+        <div class="wrapper style2">
+
+            <article id="main" class="container special">
+                <a href="#" class="image featured"><img src="images/pic06.jpg" alt="" /></a>
+                <header>
+                    <h2><a href="#">Sed massa imperdiet magnis</a></h2>
+                    <p>
+                        Sociis aenean eu aenean mollis mollis facilisis primis ornare penatibus aenean. Cursus ac enim
+                        pulvinar curabitur morbi convallis. Lectus malesuada sed fermentum dolore amet.
+                    </p>
+                </header>
+                <p>
+                    Commodo id natoque malesuada sollicitudin elit suscipit. Curae suspendisse mauris posuere accumsan
+                    massa
+                    posuere lacus convallis tellus interdum. Amet nullam fringilla nibh nulla convallis ut venenatis
+                    purus
+                    sit arcu sociis. Nunc fermentum adipiscing tempor cursus nascetur adipiscing adipiscing. Primis
+                    aliquam
+                    mus lacinia lobortis phasellus suscipit. Fermentum lobortis non tristique ante proin sociis accumsan
+                    lobortis. Auctor etiam porttitor phasellus tempus cubilia ultrices tempor sagittis. Nisl fermentum
+                    consequat integer interdum integer purus sapien. Nibh eleifend nulla nascetur pharetra commodo mi
+                    augue
+                    interdum tellus. Ornare cursus augue feugiat sodales velit lorem. Semper elementum ullamcorper
+                    lacinia
+                    natoque aenean scelerisque.
+                </p>
+                <footer>
+                    <a href="#" class="button">Continue Reading</a>
+                </footer>
+            </article>
+
+        </div>
+
+        <!-- Features -->
+        <div class="wrapper style1">
+
+            <section id="features" class="container special">
+                <header>
+                    <h2>Morbi ullamcorper et varius leo lacus</h2>
+                    <p>Ipsum volutpat consectetur orci metus consequat imperdiet duis integer semper magna.</p>
+                </header>
+                <div class="row">
+                    <article class="col-4 col-12-mobile special">
+                        <a href="#" class="image featured"><img src="images/pic07.jpg" alt="" /></a>
+                        <header>
+                            <h3><a href="#">Gravida aliquam penatibus</a></h3>
+                        </header>
+                        <p>
+                            Amet nullam fringilla nibh nulla convallis tique ante proin sociis accumsan lobortis. Auctor
+                            etiam
+                            porttitor phasellus tempus cubilia ultrices tempor sagittis. Nisl fermentum consequat
+                            integer interdum.
+                        </p>
+                    </article>
+                    <article class="col-4 col-12-mobile special">
+                        <a href="#" class="image featured"><img src="images/pic08.jpg" alt="" /></a>
+                        <header>
+                            <h3><a href="#">Sed quis rhoncus placerat</a></h3>
+                        </header>
+                        <p>
+                            Amet nullam fringilla nibh nulla convallis tique ante proin sociis accumsan lobortis. Auctor
+                            etiam
+                            porttitor phasellus tempus cubilia ultrices tempor sagittis. Nisl fermentum consequat
+                            integer interdum.
+                        </p>
+                    </article>
+                    <article class="col-4 col-12-mobile special">
+                        <a href="#" class="image featured"><img src="images/pic09.jpg" alt="" /></a>
+                        <header>
+                            <h3><a href="#">Magna laoreet et aliquam</a></h3>
+                        </header>
+                        <p>
+                            Amet nullam fringilla nibh nulla convallis tique ante proin sociis accumsan lobortis. Auctor
+                            etiam
+                            porttitor phasellus tempus cubilia ultrices tempor sagittis. Nisl fermentum consequat
+                            integer interdum.
+                        </p>
+                    </article>
+                </div>
+            </section>
+
+        </div>
+
+        <!-- Footer -->
+        <div id="footer">
+            <div class="container">
+                <div class="row">
+
+                    <!-- Tweets -->
+                    <section class="col-4 col-12-mobile">
+                        <header>
+                            <h2 class="icon brands fa-twitter circled"><span class="label">Tweets</span></h2>
+                        </header>
+                        <ul class="divided">
+                            <li>
+                                <article class="tweet">
+                                    Amet nullam fringilla nibh nulla convallis tique ante sociis accumsan.
+                                    <span class="timestamp">5 minutes ago</span>
+                                </article>
+                            </li>
+                            <li>
+                                <article class="tweet">
+                                    Hendrerit rutrum quisque.
+                                    <span class="timestamp">30 minutes ago</span>
+                                </article>
+                            </li>
+                            <li>
+                                <article class="tweet">
+                                    Curabitur donec nulla massa laoreet nibh. Lorem praesent montes.
+                                    <span class="timestamp">3 hours ago</span>
+                                </article>
+                            </li>
+                            <li>
+                                <article class="tweet">
+                                    Lacus natoque cras rhoncus curae dignissim ultricies. Convallis orci aliquet.
+                                    <span class="timestamp">5 hours ago</span>
+                                </article>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <!-- Posts -->
+                    <section class="col-4 col-12-mobile">
+                        <header>
+                            <h2 class="icon solid fa-file circled"><span class="label">Posts</span></h2>
+                        </header>
+                        <ul class="divided">
+                            <li>
+                                <article class="post stub">
+                                    <header>
+                                        <h3><a href="#">Nisl fermentum integer</a></h3>
+                                    </header>
+                                    <span class="timestamp">3 hours ago</span>
+                                </article>
+                            </li>
+                            <li>
+                                <article class="post stub">
+                                    <header>
+                                        <h3><a href="#">Phasellus portitor lorem</a></h3>
+                                    </header>
+                                    <span class="timestamp">6 hours ago</span>
+                                </article>
+                            </li>
+                            <li>
+                                <article class="post stub">
+                                    <header>
+                                        <h3><a href="#">Magna tempus consequat</a></h3>
+                                    </header>
+                                    <span class="timestamp">Yesterday</span>
+                                </article>
+                            </li>
+                            <li>
+                                <article class="post stub">
+                                    <header>
+                                        <h3><a href="#">Feugiat lorem ipsum</a></h3>
+                                    </header>
+                                    <span class="timestamp">2 days ago</span>
+                                </article>
+                            </li>
+                        </ul>
+                    </section>
+
+                    <!-- Photos -->
+                    <section class="col-4 col-12-mobile">
+                        <header>
+                            <h2 class="icon solid fa-camera circled"><span class="label">Photos</span></h2>
+                        </header>
+                        <div class="row gtr-25">
+                            <div class="col-6">
+                                <a href="#" class="image fit"><img src="images/pic10.jpg"
+                                        alt="" /></a>
+                            </div>
+                            <div class="col-6">
+                                <a href="#" class="image fit"><img src="images/pic11.jpg"
+                                        alt="" /></a>
+                            </div>
+                            <div class="col-6">
+                                <a href="#" class="image fit"><img src="images/pic12.jpg"
+                                        alt="" /></a>
+                            </div>
+                            <div class="col-6">
+                                <a href="#" class="image fit"><img src="images/pic13.jpg"
+                                        alt="" /></a>
+                            </div>
+                            <div class="col-6">
+                                <a href="#" class="image fit"><img src="images/pic14.jpg"
+                                        alt="" /></a>
+                            </div>
+                            <div class="col-6">
+                                <a href="#" class="image fit"><img src="images/pic15.jpg"
+                                        alt="" /></a>
+                            </div>
                         </div>
-                    </div>
-                    <div class="col-md-5">
-                        <svg class="bd-placeholder-img bd-placeholder-img-lg featurette-image img-fluid mx-auto"
-                            width="500" height="500" xmlns="http://www.w3.org/2000/svg" role="img"
-                            aria-label="Placeholder: 500x500" preserveAspectRatio="xMidYMid slice" focusable="false">
-                            <title>Placeholder</title>
-                            <rect width="100%" height="100%" fill="var(--bs-secondary-bg)" /><text x="50%" y="50%"
-                                fill="var(--bs-secondary-color)" dy=".3em">500x500</text>
-                        </svg>
+                    </section>
+
+                </div>
+                <hr />
+                <div class="row">
+                    <div class="col-12">
+
+                        <!-- Contact -->
+                        <section class="contact">
+                            <header>
+                                <h3>Nisl turpis nascetur interdum?</h3>
+                            </header>
+                            <p>Urna nisl non quis interdum mus ornare ridiculus egestas ridiculus lobortis vivamus
+                                tempor aliquet.</p>
+                            <ul class="icons">
+                                <li><a href="#" class="icon brands fa-twitter"><span
+                                            class="label">Twitter</span></a></li>
+                                <li><a href="#" class="icon brands fa-facebook-f"><span
+                                            class="label">Facebook</span></a></li>
+                                <li><a href="#" class="icon brands fa-instagram"><span
+                                            class="label">Instagram</span></a></li>
+                                <li><a href="#" class="icon brands fa-pinterest"><span
+                                            class="label">Pinterest</span></a></li>
+                                <li><a href="#" class="icon brands fa-dribbble"><span
+                                            class="label">Dribbble</span></a></li>
+                                <li><a href="#" class="icon brands fa-linkedin-in"><span
+                                            class="label">Linkedin</span></a></li>
+                            </ul>
+                        </section>
+
+                        <!-- Copyright -->
+                        <div class="copyright">
+                            <ul class="menu">
+                                <li>&copy; Untitled. All rights reserved.</li>
+                                <li>Design: <a href="http://html5up.net">HTML5 UP</a></li>
+                            </ul>
+                        </div>
+
                     </div>
 
                 </div>
-
-                {{-- <hr class="featurette-divider"> --}}
-            @endforeach
-
-
-
-            <hr class="featurette-divider">
-
-
-            <div class="container">
-                <!-- Content Header (Page header) -->
-                <section class="content-header">
-                    <div class="container-fluid">
-                        <div class="row mb-2">
-                            <div class="col-sm-6">
-                                <h1>Buat laporan</h1>
-                            </div>
-                        </div>
-                    </div><!-- /.container-fluid -->
-                </section>
-
-                <!-- Main content -->
-                <section class="content">
-                    <!-- Default box -->
-                    <div class="card shadow-lg p-3 mb-5 bg-body-tertiary rounded-4  bg-dark">
-                        <div class="card-body">
-                            <div class="row align-items-center">
-                                <!-- Content for desktop and tablet -->
-                                <div class="col-md-5">
-                                    <div class="text-center">
-                                        <h2>Undangan <strong>Hesoyam</strong></h2>
-                                        <p class="lead mb-5">
-                                            Cianjur jawa barat<br>
-                                            whatsapp: 081220786387
-                                        </p>
-                                    </div>
-                                </div>
-                                <div class="col-md-7">
-                                    <form action="report" method="POST">
-                                        @csrf
-                                        @if (Auth::check())
-                                            <input hidden type="email" name="send"
-                                                value="{{ Auth::user()->email }}">
-                                            <input type="email" name="to" value="admin@admin.com" hidden>
-                                            <div class="form-group">
-                                                <label for="inputName">Dari</label>
-                                                <input type="text" id="inputName" class="form-control"
-                                                    value="{{ Auth::user()->email }}" disabled>
-                                            </div>
-                                        @endif
-
-
-                                        <div class="form-group">
-                                            <label for="inputEmail">Kepada</label>
-                                            <input type="email" id="inputEmail" class="form-control"
-                                                value="admin@admin.com" disabled>
-                                        </div>
-                                        <div class="form-group">
-                                                <label for="inputSubject">Id Undangan<button
-                                                        class="btn text-light alert-report" type="button">
-                                                        <i class="text-info bi bi-info-circle"></i>
-                                                    </button></label>
-
-                                            <input type="text" id="inputSubject" class="form-control"
-                                                name="title" value="0">
-                                        </div>
-                                        <div class="form-group">
-                                            <label for="inputMessage">Pesan</label>
-                                            <textarea id="inputMessage" class="form-control" name="message" rows="4"></textarea>
-                                        </div>
-                                        <div class="form-group d-flex ">
-                                            @if (Auth::check())
-                                                <p><button type="submit" class="btn bg-success m-1 text-light"
-                                                        data-bs-toggle="modal">
-                                                        Kirim Pengaduan
-                                                    </button></p>
-                                            @else
-                                                <p>
-                                                    <button class="btn bg-success m-1 text-light delete-data"
-                                                        type="button">
-                                                        Kirim pengaduan
-                                                    </button>
-                                                </p>
-                                            @endif
-                                            <div class="sosmed d-flex">
-                                                <a href=""><i
-                                                        class="bi bi-whatsapp px-2 fs-2 text-green"></i></a>
-                                            </div>
-                                        </div>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </section><!-- /.content -->
             </div>
-        </div><!-- /.container -->
-        <!-- FOOTER -->
-        <footer class="container">
-            <p class="float-end"><a href="#">Back to top</a></p>
-            <p>&copy; 2017–2024 Company, Inc. &middot; <a href="#">Privacy</a> &middot; <a
-                    href="#">Terms</a></p>
-        </footer>
-    </main>
+        </div>
 
+    </div>
 
-    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
-        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <!-- Scripts -->
+    <script src="        {{ asset('assets-home') }}/js/jquery.min.js"></script>
+    <script src="        {{ asset('assets-home') }}/js/jquery.dropotron.min.js"></script>
+    <script src="        {{ asset('assets-home') }}/js/jquery.scrolly.min.js"></script>
+    <script src="        {{ asset('assets-home') }}/js/jquery.scrollex.min.js"></script>
+    <script src="        {{ asset('assets-home') }}/js/browser.min.js"></script>
+    <script src="        {{ asset('assets-home') }}/js/breakpoints.min.js"></script>
+    <script src="        {{ asset('assets-home') }}/js/util.js"></script>
+    <script src="        {{ asset('assets-home') }}/js/main.js"></script>
 
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-    <script>
-        console.log('delete')
-        $('.delete-data').click(function(e) {
-            e.preventDefault();
-            const data = $(this).closest('.featurette').find('h2').text();
-            Swal.fire({
-                title: 'Peringatan!',
-                text: `anda belum Login, tidak bisa mengakses fitur tersebut.`,
-                icon: 'info',
-                confirmButtonText: 'OK',
-                focusConfirm: false
-            });
-        });
-    </script>
 
 
     <script>
-        console.log('delete')
-        $('.alert-report').click(function(e) {
-            e.preventDefault();
-            const data = $(this).closest('.featurette').find('h2').text();
-            Swal.fire({
-                title: 'Informasi',
-                text: `Apabila anda ingin melaporkan undangan tertentu maka isi id undangan sesuai yang di halaman undangan anda, selain dari melaporkan undangan maka isi id undangan dengan 0.`,
-                icon: 'info',
-                confirmButtonText: 'OK',
-                focusConfirm: false
-            });
-        });
-    </script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const textDataElement = document.getElementById("text-data");
+            const texts = JSON.parse(textDataElement.getAttribute("data-texts"));
 
+            let currentTextIndex = 0;
+            let charIndex = 0;
+            const typingSpeed = 150;
+            const erasingSpeed = 100;
+            const newTextDelay = 2000; // Delay between current and next text
 
-    <script>
-        // Periksa apakah terdapat notifikasi sukses dari sesi
-        const successNotification = '{{ session('success') }}';
+            const typingTextSpan = document.getElementById("typing-text");
 
-        // Fungsi untuk menampilkan notifikasi
-        function showNotification(message) {
-            Swal.fire({
-                title: 'Sukses!',
-                text: message,
-                icon: 'success',
-                confirmButtonText: 'OK',
-                focusConfirm: false
-            });
-        }
-
-        // Periksa apakah terdapat notifikasi sukses dari sesi
-        $(document).ready(function() {
-            if (successNotification) {
-                showNotification(successNotification);
+            function type() {
+                if (charIndex < texts[currentTextIndex].length) {
+                    typingTextSpan.textContent += texts[currentTextIndex].charAt(charIndex);
+                    charIndex++;
+                    setTimeout(type, typingSpeed);
+                } else {
+                    setTimeout(erase, newTextDelay);
+                }
             }
-        });
-    </script>
 
-    <script>
-        // Periksa apakah terdapat notifikasi error dari sesi
-        const errorNotification = '{{ $errors->any() }}';
-
-        // Fungsi untuk menampilkan notifikasi
-        function showErrorNotification(message) {
-            Swal.fire({
-                title: 'Error!',
-                text: 'Terdapat kesalahan saat menginput data',
-                icon: 'error',
-                confirmButtonText: 'OK',
-                focusConfirm: false
-            });
-        }
-
-        // Periksa apakah terdapat notifikasi error dari sesi
-        $(document).ready(function() {
-            if (errorNotification) {
-                showErrorNotification(errorNotification);
+            function erase() {
+                if (charIndex > 0) {
+                    typingTextSpan.textContent = texts[currentTextIndex].substring(0, charIndex - 1);
+                    charIndex--;
+                    setTimeout(erase, erasingSpeed);
+                } else {
+                    currentTextIndex = (currentTextIndex + 1) % texts.length;
+                    setTimeout(type, typingSpeed + 1100);
+                }
             }
+
+            setTimeout(type, newTextDelay);
         });
     </script>
-
-    <script src="{{ asset('assets') }}/dist/js/adminlte.min.js"></script>
-
-
-
 </body>
 
 </html>

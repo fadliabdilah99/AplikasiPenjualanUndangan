@@ -39,7 +39,7 @@
                 <!-- small card -->
                 <div class="small-box bg-info">
                     <div class="inner">
-                        <h3>{{ $terjual }}</h3>
+                        <h3>{{$terjual}}</h3>
 
                         <p>Undangan terjual</p>
                     </div>
@@ -56,7 +56,7 @@
                 <!-- small card -->
                 <div class="small-box bg-success">
                     <div class="inner">
-                        <h3>Rp.{{ $pendapatan }}</h3>
+                        <h3>Rp. {{$pendapatan}}</h3>
 
                         <p>Pendapatan</p>
                     </div>
@@ -116,7 +116,7 @@
                                             <td>{{ $list->id }}</td>
                                             <td>{{ $list->name }}</td>
                                             <td>
-                                                @if ($list->tanggal < $date)
+                                                @if ($list->tanggal > $date)
                                                     {{ $list->tanggal }}
                                                 @else
                                                     <form action="{{ url('dua/' . $list->id) }}" method="POST"
@@ -129,18 +129,17 @@
                                                     </form>
                                                 @endif
                                             </td>
-                                            <td>{{ $list->status }}</td>
+                                            <td class="{{$list->status == 'public' ? 'text-success' : 'text-danger'}}">{{ $list->status }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                                 <tfoot>
+
                                     <tr>
-                                        <th>No</th>
-                                        <th>jenis undangan</th>
-                                        <th>Id undangan</th>
-                                        <th>Pembeli</th>
-                                        <th>tenggat</th>
-                                        <th>status</th>
+                                        <td colspan="2" style="text-align: center;"><strong>Total Pendapatan:</strong></td>
+                                        <td><strong>{{ $terjual }}</strong></td>
+                                        <td colspan="2" style="text-align: center;"><strong>Total Pendapatan:</strong></td>
+                                        <td><strong>{{ $pendapatan }}</strong></td>
                                     </tr>
                                 </tfoot>
                             </table>
@@ -156,7 +155,7 @@
             <div class="col-12">
                 <div class="card">
                     <div class="card-header">
-                        <h3 class="card-title">Undangan andaa</h3>
+                        <h3 class="card-title">Undangan anda</h3>
 
                         <div class="card-tools">
                             <div class="input-group input-group-sm" style="width: 150px;">
