@@ -7,7 +7,7 @@
 <html>
 
 <head>
-    <title>Helios by HTML5 UP</title>
+    <title>ULFAVIA</title>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="{{ asset('assets-home') }}/css/main.css" />
@@ -20,6 +20,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
 </head>
 
 <body class="homepage is-preload">
@@ -35,14 +36,20 @@
                         <span id="typing-text" class="fs-1"></span>
                         <h1 class="cursor">.
                         </h1>
-                        <div id="text-data" data-texts='["Hallo {{Auth::user()->name}}", "Solusi Undangan Anda."]' style="display: none;">
+                        <div id="text-data"
+                            data-texts='[
+                            @if (Auth::check()) "Hallo {{ Auth::user()->name }}",
+                            @else
+                            "Yuk Buat Akun", @endif
+                            "Solusi Undangan Anda."]'
+                            style="display: none;">
                         </div>
                     </div>
                     <hr />
                     <p>Another fine freebie by HTML5 UP</p>
                 </header>
                 <footer>
-                    <a href="#banner" class="button circled scrolly">Start</a>
+                    <a href="#banner" class="button circled">Start</a>
                 </footer>
             </div>
 
@@ -68,9 +75,16 @@
                             <li><a href="#">Veroeros feugiat</a></li>
                         </ul>
                     </li>
-                    <li><a href="left-sidebar.html">Left Sidebar</a></li>
-                    <li><a href="right-sidebar.html">Right Sidebar</a></li>
-                    <li><a href="no-sidebar.html">No Sidebar</a></li>
+
+                    @if (Auth::check())
+                        <li><a href="message">message</a></li>
+                        <li><a href="profile/{{ auth()->user()->id }}">Undangan Anda</a></li>
+                        <li><a href="logout">LogOut</a></li>
+                    @else
+                        <li><a href="#" class="delete-data">message</a></li>
+                        <li><a href="login">LogIn</a></li>
+                        <li><a href="register">Register</a></li>
+                    @endif
                 </ul>
             </nav>
 
@@ -79,10 +93,10 @@
         <!-- Banner -->
         <section id="banner">
             <header>
-                <h2>Hi. You're lookings at <strong>Helios</strong>.</h2>
+                <h2>Temukan keindahan setiap titik cahaya di <strong>ULFAVIA</strong>.</h2>
                 <p>
-                    A (free) responsive site template by <a href="http://html5up.net">HTML5 UP</a>.
-                    Built with HTML5/CSS3 and released under the <a href="http://html5up.net/license">CCA</a> license.
+                    Diskon 50% untuk kamu pemgguna baru <a href="http://html5up.net">ketentuan berlaku</a>. <br>
+                    Cek undangan yang lagi diskon yuuu <a href="http://html5up.net/license">disini</a>
                 </p>
             </header>
         </section>
@@ -90,10 +104,33 @@
         <!-- Carousel -->
         <section class="carousel">
             <div class="reel">
+                @foreach ($produk as $prod)
+                    <article>
+                        <a href="{{ $prod->link }}" class="image featured"><img
+                                src="{{ asset('prod-image/' . $prod->foto) }}" alt="" /></a>
+                        <header>
+                            <h3><a href="#">{{ $prod->nama }}</a></h3>
+                        </header>
+
+                        <p class="text-start">{{ $prod->keterangan }}</p>
+                        @if (Auth::check())
+                            <p><button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
+                                    data-bs-target="#buy{{ $prod->link }}">
+                                    Buy Now
+                                </button></p>
+                        @else
+                            <p>
+                                <button class="btn btn-outline-success delete-data" type="button">
+                                    Buy Now
+                                </button>
+                            </p>
+                        @endif
+                    </article>
+                @endforeach
                 <article>
                     <a href="#" class="image featured"><img src="images/pic01.jpg" alt="" /></a>
                     <header>
-                        <h3><a href="#">Pulvinar sagittis congues</a></h3>
+                        <h3><a href="#">coming <br> soon</a></h3>
                     </header>
                     <p>Commodo id natoque malesuada sollicitudin elit suscipit magna.</p>
                 </article>
@@ -101,7 +138,7 @@
                 <article>
                     <a href="#" class="image featured"><img src="images/pic02.jpg" alt="" /></a>
                     <header>
-                        <h3><a href="#">Fermentum sagittis proin</a></h3>
+                        <h3><a href="#">coming <br> soon</a></h3>
                     </header>
                     <p>Commodo id natoque malesuada sollicitudin elit suscipit magna.</p>
                 </article>
@@ -109,7 +146,7 @@
                 <article>
                     <a href="#" class="image featured"><img src="images/pic03.jpg" alt="" /></a>
                     <header>
-                        <h3><a href="#">Sed quis rhoncus placerat</a></h3>
+                        <h3><a href="#">coming <br> soon</a></h3>
                     </header>
                     <p>Commodo id natoque malesuada sollicitudin elit suscipit magna.</p>
                 </article>
@@ -117,7 +154,7 @@
                 <article>
                     <a href="#" class="image featured"><img src="images/pic04.jpg" alt="" /></a>
                     <header>
-                        <h3><a href="#">Ultrices urna sit lobortis</a></h3>
+                        <h3><a href="#">coming <br> soon</a></h3>
                     </header>
                     <p>Commodo id natoque malesuada sollicitudin elit suscipit magna.</p>
                 </article>
@@ -125,7 +162,7 @@
                 <article>
                     <a href="#" class="image featured"><img src="images/pic05.jpg" alt="" /></a>
                     <header>
-                        <h3><a href="#">Varius magnis sollicitudin</a></h3>
+                        <h3><a href="#">coming <br> soon</a></h3>
                     </header>
                     <p>Commodo id natoque malesuada sollicitudin elit suscipit magna.</p>
                 </article>
@@ -133,7 +170,7 @@
                 <article>
                     <a href="#" class="image featured"><img src="images/pic01.jpg" alt="" /></a>
                     <header>
-                        <h3><a href="#">Pulvinar sagittis congue</a></h3>
+                        <h3><a href="#">coming <br> soon</a></h3>
                     </header>
                     <p>Commodo id natoque malesuada sollicitudin elit suscipit magna.</p>
                 </article>
@@ -141,7 +178,7 @@
                 <article>
                     <a href="#" class="image featured"><img src="images/pic02.jpg" alt="" /></a>
                     <header>
-                        <h3><a href="#">Fermentum sagittis proin</a></h3>
+                        <h3><a href="#">coming <br> soon</a></h3>
                     </header>
                     <p>Commodo id natoque malesuada sollicitudin elit suscipit magna.</p>
                 </article>
@@ -149,7 +186,7 @@
                 <article>
                     <a href="#" class="image featured"><img src="images/pic03.jpg" alt="" /></a>
                     <header>
-                        <h3><a href="#">Sed quis rhoncus placerat</a></h3>
+                        <h3><a href="#">coming <br> soon</a></h3>
                     </header>
                     <p>Commodo id natoque malesuada sollicitudin elit suscipit magna.</p>
                 </article>
@@ -157,7 +194,7 @@
                 <article>
                     <a href="#" class="image featured"><img src="images/pic04.jpg" alt="" /></a>
                     <header>
-                        <h3><a href="#">Ultrices urna sit lobortis</a></h3>
+                        <h3><a href="#">coming <br> soon</a></h3>
                     </header>
                     <p>Commodo id natoque malesuada sollicitudin elit suscipit magna.</p>
                 </article>
@@ -165,7 +202,7 @@
                 <article>
                     <a href="#" class="image featured"><img src="images/pic05.jpg" alt="" /></a>
                     <header>
-                        <h3><a href="#">Varius magnis sollicitudin</a></h3>
+                        <h3><a href="#">coming <br> soon</a></h3>
                     </header>
                     <p>Commodo id natoque malesuada sollicitudin elit suscipit magna.</p>
                 </article>
@@ -174,35 +211,90 @@
         </section>
 
         <!-- Main -->
-        <div class="wrapper style2">
-
+        <div class="style2">
             <article id="main" class="container special">
                 <a href="#" class="image featured"><img src="images/pic06.jpg" alt="" /></a>
                 <header>
-                    <h2><a href="#">Sed massa imperdiet magnis</a></h2>
+                    <h2><a href="#">Buat laporan/pengaduan</a></h2>
                     <p>
-                        Sociis aenean eu aenean mollis mollis facilisis primis ornare penatibus aenean. Cursus ac enim
-                        pulvinar curabitur morbi convallis. Lectus malesuada sed fermentum dolore amet.
+                        buat laporan atau pengaduan anda untuk menyelesaikan masalah anda, tunggu respon 1x24 jam.
                     </p>
                 </header>
-                <p>
-                    Commodo id natoque malesuada sollicitudin elit suscipit. Curae suspendisse mauris posuere accumsan
-                    massa
-                    posuere lacus convallis tellus interdum. Amet nullam fringilla nibh nulla convallis ut venenatis
-                    purus
-                    sit arcu sociis. Nunc fermentum adipiscing tempor cursus nascetur adipiscing adipiscing. Primis
-                    aliquam
-                    mus lacinia lobortis phasellus suscipit. Fermentum lobortis non tristique ante proin sociis accumsan
-                    lobortis. Auctor etiam porttitor phasellus tempus cubilia ultrices tempor sagittis. Nisl fermentum
-                    consequat integer interdum integer purus sapien. Nibh eleifend nulla nascetur pharetra commodo mi
-                    augue
-                    interdum tellus. Ornare cursus augue feugiat sodales velit lorem. Semper elementum ullamcorper
-                    lacinia
-                    natoque aenean scelerisque.
-                </p>
-                <footer>
-                    <a href="#" class="button">Continue Reading</a>
-                </footer>
+                <div class="container">
+                    <!-- Main content -->
+                    <section class="content">
+                        <!-- Default box -->
+                        <div class="card shadow-lg p-3 mb-5 bg-body-tertiary rounded-4  bg-dark">
+                            <div class="card-body">
+                                <div class="row align-items-center">
+                                    <!-- Content for desktop and tablet -->
+                                    <div class="col-md-5">
+                                        <div class="text-center">
+                                            <h2>Undangan <strong>Hesoyam</strong></h2>
+                                            <p class="lead mb-5 text-center">
+                                                Cianjur jawa barat<br>
+                                                whatsapp: 081220786387
+                                            </p>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-7">
+                                        <form action="report" method="POST">
+                                            @csrf
+                                            @if (Auth::check())
+                                                <input hidden type="email" name="send"
+                                                    value="{{ Auth::user()->email }}">
+                                                <input type="email" name="to" value="admin@admin.com" hidden>
+                                                <div class="form-group">
+                                                    <label for="inputName">Dari</label>
+                                                    <input type="text" id="inputName" class="form-control"
+                                                        value="{{ Auth::user()->email }}" disabled>
+                                                </div>
+                                            @endif
+
+
+                                            <div class="form-group">
+                                                <label for="inputEmail">Kepada</label>
+                                                <input type="email" id="inputEmail" class="form-control"
+                                                    value="admin@admin.com" disabled>
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputSubject">Id Undangan<button
+                                                        class="btn text-light alert-report" type="button">
+                                                        <i class="text-info bi bi-info-circle"></i>
+                                                    </button></label>
+
+                                                <input type="text" id="inputSubject" class="form-control"
+                                                    name="title" value="0">
+                                            </div>
+                                            <div class="form-group">
+                                                <label for="inputMessage">Pesan</label>
+                                                <textarea id="inputMessage" class="form-control" name="message" rows="4"></textarea>
+                                            </div>
+                                            <div class="form-group d-flex mt-3">
+                                                @if (Auth::check())
+                                                    <p><button type="submit" class="btn bg-success m-1 text-light"
+                                                            data-bs-toggle="modal">
+                                                            Kirim Pengaduan
+                                                        </button></p>
+                                                @else
+                                                    <p>
+                                                        <button class="btn bg-success m-1 text-light delete-data"
+                                                            type="button">
+                                                            Kirim pengaduan
+                                                        </button>
+                                                    </p>
+                                                @endif
+                                                <div class="sosmed d-flex">
+                                                    <a href="" style="text-decoration: none; color: green"><i class="bi bi-whatsapp px-2 fs-2"></i></a>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </section><!-- /.content -->
+                </div>
             </article>
 
         </div>
@@ -462,6 +554,93 @@
             setTimeout(type, newTextDelay);
         });
     </script>
+
+
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+
+    <script>
+        console.log('delete')
+        $('.delete-data').click(function(e) {
+            e.preventDefault();
+            const data = $(this).closest('.featurette').find('h2').text();
+            Swal.fire({
+                title: 'Peringatan!',
+                text: `anda belum Login, tidak bisa mengakses fitur tersebut.`,
+                icon: 'info',
+                confirmButtonText: 'OK',
+                focusConfirm: false
+            });
+        });
+    </script>
+
+
+    <script>
+        $('.alert-report').click(function(e) {
+            e.preventDefault();
+            const data = $(this).closest('.featurette').find('h2').text();
+            Swal.fire({
+                title: 'Informasi',
+                text: `Apabila anda ingin melaporkan undangan tertentu maka isi id undangan sesuai yang di halaman undangan anda, selain dari melaporkan undangan maka isi id undangan dengan 0.`,
+                icon: 'info',
+                confirmButtonText: 'OK',
+                focusConfirm: false
+            });
+        });
+    </script>
+
+
+    <script>
+        // Periksa apakah terdapat notifikasi sukses dari sesi
+        const successNotification = '{{ session('success') }}';
+
+        // Fungsi untuk menampilkan notifikasi
+        function showNotification(message) {
+            Swal.fire({
+                title: 'Sukses!',
+                text: message,
+                icon: 'success',
+                confirmButtonText: 'OK',
+                focusConfirm: false
+            });
+        }
+
+        // Periksa apakah terdapat notifikasi sukses dari sesi
+        $(document).ready(function() {
+            if (successNotification) {
+                showNotification(successNotification);
+            }
+        });
+    </script>
+
+    <script>
+        // Periksa apakah terdapat notifikasi error dari sesi
+        const errorNotification = '{{ $errors->any() }}';
+
+        // Fungsi untuk menampilkan notifikasi
+        function showErrorNotification(message) {
+            Swal.fire({
+                title: 'Error!',
+                text: 'Terdapat kesalahan saat menginput data',
+                icon: 'error',
+                confirmButtonText: 'OK',
+                focusConfirm: false
+            });
+        }
+
+        // Periksa apakah terdapat notifikasi error dari sesi
+        $(document).ready(function() {
+            if (errorNotification) {
+                showErrorNotification(errorNotification);
+            }
+        });
+    </script>
+
+    <script src="{{ asset('assets') }}/dist/js/adminlte.min.js"></script>
 </body>
 
 </html>

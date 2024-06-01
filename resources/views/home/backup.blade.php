@@ -288,7 +288,7 @@
         </div>
 
 
-        
+
         <div class="container marketing">
             <div class="row">
                 <div class="col-lg-4">
@@ -432,10 +432,10 @@
                                                 value="admin@admin.com" disabled>
                                         </div>
                                         <div class="form-group">
-                                                <label for="inputSubject">Id Undangan<button
-                                                        class="btn text-light alert-report" type="button">
-                                                        <i class="text-info bi bi-info-circle"></i>
-                                                    </button></label>
+                                            <label for="inputSubject">Id Undangan<button
+                                                    class="btn text-light alert-report" type="button">
+                                                    <i class="text-info bi bi-info-circle"></i>
+                                                </button></label>
 
                                             <input type="text" id="inputSubject" class="form-control"
                                                 name="title" value="0">
@@ -570,10 +570,3 @@
 </body>
 
 </html>
-
-
-
-
-
-
-
