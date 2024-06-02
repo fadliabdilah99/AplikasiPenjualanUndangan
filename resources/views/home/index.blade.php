@@ -61,25 +61,6 @@
             <nav id="nav">
                 <ul>
                     <li><a href="index.html">Home</a></li>
-                    <li>
-                        <a href="#">Dropdown</a>
-                        <ul>
-                            <li><a href="#">Lorem ipsum dolor</a></li>
-                            <li><a href="#">Magna phasellus</a></li>
-                            <li><a href="#">Etiam dolore nisl</a></li>
-                            <li>
-                                <a href="#">And a submenu &hellip;</a>
-                                <ul>
-                                    <li><a href="#">Lorem ipsum dolor</a></li>
-                                    <li><a href="#">Phasellus consequat</a></li>
-                                    <li><a href="#">Magna phasellus</a></li>
-                                    <li><a href="#">Etiam dolore nisl</a></li>
-                                </ul>
-                            </li>
-                            <li><a href="#">Veroeros feugiat</a></li>
-                        </ul>
-                    </li>
-
                     @if (Auth::check())
                         <li><a href="message">message</a></li>
                         <li><a href="profile/{{ auth()->user()->id }}">Undangan Anda</a></li>
@@ -102,6 +83,7 @@
                     Diskon 50% untuk kamu pemgguna baru <a href="http://html5up.net">ketentuan berlaku</a>. <br>
                     Cek undangan yang lagi diskon yuuu <a href="http://html5up.net/license">disini</a>
                 </p>
+                <a href="profile/{{ auth()->user()->id }}" class="btn btn-outline-secondary justify-content-center mt-5">Undangan Anda</a>
             </header>
         </section>
 
