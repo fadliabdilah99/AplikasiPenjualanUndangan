@@ -332,11 +332,11 @@
                     <div class="col-md-6">
                         <ul class="list-group">
                             <li class="list-group-item">
-                                <div class="fw-bold">BRI</div>
+                                <div class="fw-bold">{{$namarekening1}}</div>
                                 {{ $rekening1 }}
                             </li>
                             <li class="list-group-item">
-                                <div class="fw-bold">Madiri</div>
+                                <div class="fw-bold">{{$namarekening2}}</div>
                                 {{ $rekening2 }}
                             </li>
                         </ul>

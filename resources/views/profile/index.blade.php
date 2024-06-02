@@ -39,7 +39,7 @@
                 <!-- small card -->
                 <div class="small-box bg-info">
                     <div class="inner">
-                        <h3>{{$terjual}}</h3>
+                        <h3>{{ $terjual }}</h3>
 
                         <p>Undangan terjual</p>
                     </div>
@@ -56,7 +56,7 @@
                 <!-- small card -->
                 <div class="small-box bg-success">
                     <div class="inner">
-                        <h3>Rp. {{$pendapatan}}</h3>
+                        <h3>Rp. {{ $pendapatan }}</h3>
 
                         <p>Pendapatan</p>
                     </div>
@@ -129,16 +129,19 @@
                                                     </form>
                                                 @endif
                                             </td>
-                                            <td class="{{$list->status == 'public' ? 'text-success' : 'text-danger'}}">{{ $list->status }}</td>
+                                            <td class="{{ $list->status == 'public' ? 'text-success' : 'text-danger' }}">
+                                                {{ $list->status }}</td>
                                         </tr>
                                     @endforeach
                                 </tbody>
                                 <tfoot>
 
                                     <tr>
-                                        <td colspan="2" style="text-align: center;"><strong>Total Pendapatan:</strong></td>
+                                        <td colspan="2" style="text-align: center;"><strong>Total Pendapatan:</strong>
+                                        </td>
                                         <td><strong>{{ $terjual }}</strong></td>
-                                        <td colspan="2" style="text-align: center;"><strong>Total Pendapatan:</strong></td>
+                                        <td colspan="2" style="text-align: center;"><strong>Total Pendapatan:</strong>
+                                        </td>
                                         <td><strong>{{ $pendapatan }}</strong></td>
                                     </tr>
                                 </tfoot>
@@ -196,10 +199,6 @@
                                                         class="bi bi-eye"></i></a>
                                             @endif
                                             @if ($dua->status == 'edit')
-                                                <button type="button" class="btn btn-warning" data-toggle="modal"
-                                                    data-target="#edit{{ $dua->id }}">
-                                                    Edit
-                                                </button>
                                                 <button type="button" class="btn btn-primary" data-toggle="modal"
                                                     data-target="#bayar{{ $dua->id }}">
                                                     Transfer
@@ -288,18 +287,10 @@
                                                     <button type="submit" class="btn btn-info"><i
                                                             class="bi bi-send"></i></button>
                                                 </form>
-
-                                                <form action="{{ url('copy') }}" method="POST">
-                                                    @csrf
-                                                    <input hidden type="text" name="copy"
-                                                        value="https://f8cf-180-244-134-26.ngrok-free.app/{{ $dua->nama }}/{{ $dua->id }}"
-                                                        id="">
-                                                    <input hidden type="text"
-                                                        value="{{ $dua->pengantin_l }} & {{ $dua->pengantin_p }}"
-                                                        name="pengantin">
-                                                    <button type="submit" class="btn btn-info"><i
-                                                            class="bi bi-copy"></i></button>
-                                                </form>
+                                                {{-- ganti --}}
+                                                <p hidden id="link">https://getbootstrap.com/docs/5.3/components/modal/#how-it-works</p>
+                                                <button type="submit" class="btn btn-info success-data" onclick="copyText('link')"><i
+                                                        class="bi bi-copy"></i></button>
 
                                                 <form action="{{ url('daftartamu2') }}" method="POST">
                                                     @csrf
@@ -425,6 +416,24 @@
                     if (result.isConfirmed) $(e.target).closest('form').submit()
                     else swal.close()
                 })
+        });
+    </script>
+
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        $('.success-data').click(function(e) {
+            e.preventDefault();
+            const data = $(this).closest('.featurette').find('h2').text();
+            Swal.fire({
+                title: 'Success!',
+                text: `Tersalin.`,
+                icon: 'success',
+                confirmButtonText: 'OK',
+                focusConfirm: false
+            });
         });
     </script>
 @endpush

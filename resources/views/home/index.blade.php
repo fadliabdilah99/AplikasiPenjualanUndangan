@@ -8,6 +8,7 @@
 
 <head>
     <title>ULFAVIA</title>
+    <link rel="icon" href="{{ asset('images/ulfavialogo.png')}}" type="image/png">
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
     <link rel="stylesheet" href="{{ asset('assets-home') }}/css/main.css" />
@@ -21,6 +22,9 @@
         integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous">
     </script>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+    <link rel="stylesheet" href="{{ asset('assets') }}/dist/css/adminlte.min.css">
+
+
 </head>
 
 <body class="homepage is-preload">
@@ -46,7 +50,7 @@
                         </div>
                     </div>
                     <hr />
-                    <p>Another fine freebie by HTML5 UP</p>
+                    <p>Web wedding invitation Generator</p>
                 </header>
                 <footer>
                     <a href="#banner" class="button circled">Start</a>
@@ -224,7 +228,7 @@
                     <!-- Main content -->
                     <section class="content">
                         <!-- Default box -->
-                        <div class="card shadow-lg p-3 mb-5 bg-body-tertiary rounded-4  bg-dark">
+                        <div class="card shadow-lg p-3 mb-5 rounded-4">
                             <div class="card-body">
                                 <div class="row align-items-center">
                                     <!-- Content for desktop and tablet -->
@@ -285,7 +289,8 @@
                                                     </p>
                                                 @endif
                                                 <div class="sosmed d-flex">
-                                                    <a href="" style="text-decoration: none; color: green"><i class="bi bi-whatsapp px-2 fs-2"></i></a>
+                                                    <a href="" style="text-decoration: none; color: green"><i
+                                                            class="bi bi-whatsapp px-2 fs-2"></i></a>
                                                 </div>
                                             </div>
                                         </form>
@@ -504,16 +509,17 @@
         </div>
 
     </div>
+    @include('home.modal')
 
     <!-- Scripts -->
-    <script src="        {{ asset('assets-home') }}/js/jquery.min.js"></script>
-    <script src="        {{ asset('assets-home') }}/js/jquery.dropotron.min.js"></script>
-    <script src="        {{ asset('assets-home') }}/js/jquery.scrolly.min.js"></script>
-    <script src="        {{ asset('assets-home') }}/js/jquery.scrollex.min.js"></script>
-    <script src="        {{ asset('assets-home') }}/js/browser.min.js"></script>
-    <script src="        {{ asset('assets-home') }}/js/breakpoints.min.js"></script>
-    <script src="        {{ asset('assets-home') }}/js/util.js"></script>
-    <script src="        {{ asset('assets-home') }}/js/main.js"></script>
+    <script src="{{ asset('assets-home') }}/js/jquery.min.js"></script>
+    <script src="{{ asset('assets-home') }}/js/jquery.dropotron.min.js"></script>
+    <script src="{{ asset('assets-home') }}/js/jquery.scrolly.min.js"></script>
+    <script src="{{ asset('assets-home') }}/js/jquery.scrollex.min.js"></script>
+    <script src="{{ asset('assets-home') }}/js/browser.min.js"></script>
+    <script src="{{ asset('assets-home') }}/js/breakpoints.min.js"></script>
+    <script src="{{ asset('assets-home') }}/js/util.js"></script>
+    <script src="{{ asset('assets-home') }}/js/main.js"></script>
 
 
 
@@ -559,10 +565,7 @@
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
-
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
-
     <script>
         console.log('delete')
         $('.delete-data').click(function(e) {

@@ -551,8 +551,7 @@
                     <div class="row justify-content-center">
                         <div class="col-5 card-body border rounded-4 shadow p-3 m-3" data-aos="fade-down"
                             data-aos-duration="1500">
-                            <img src="https://upload.wikimedia.org/wikipedia/id/thumb/5/55/BNI_logo.svg/640px-BNI_logo.svg.png"
-                                class="img-fluid w-50 rounded" alt="bni" />
+                            <H1>{{$namarekening1}}</H1>
 
                             <p class="card-text mt-3 mb-0" style="font-size: 0.9rem">
                                 No. Rekening {{ $rekening1 }}
@@ -570,8 +569,8 @@
 
                         <div class="col-5 card-body border rounded-4 shadow p-3 m-3" data-aos="fade-down"
                             data-aos-duration="1500">
-                            <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/68/BANK_BRI_logo.svg/640px-BANK_BRI_logo.svg.png"
-                                class="img-fluid w-50 rounded" alt="bri" />
+                            <H1>{{$namarekening2}}</H1>
+
 
                             <p class="card-text mt-3 mb-0" style="font-size: 0.9rem">
                                 No. Rekening {{ $rekening2 }}

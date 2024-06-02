@@ -46,7 +46,9 @@ class product1Controller extends Controller
       // memisahkan data rekening
       $dataArray = Str::of($p2['data']->rekening)->explode('-');
       $p2['rekening1'] = $dataArray[0];
-      $p2['rekening2'] = $dataArray[1];
+      $p2['namarekening1'] = $dataArray[1];
+      $p2['rekening2'] = $dataArray[2];
+      $p2['namarekening2'] = $dataArray[3];
 
 
       // waktu

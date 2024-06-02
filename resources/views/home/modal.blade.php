@@ -71,24 +71,24 @@
                             <div class="form-group col-6">
                                 <label for="exampleInputEmail1">Link Google maps</label>
                                 <input type="text" name="linkGmaps" class="form-control" id="exampleInputEmail1"
-                                    placeholder="Nama Pengantin">
+                                    placeholder="https://www.google.com/maps/....">
                             </div>
                             <div class="form-group col-6">
                                 <label for="exampleInputEmail1">Alamat Lokasi</label>
                                 <input type="text" name="alamat" class="form-control" id="exampleInputEmail1"
-                                    placeholder="Nama Pengantin">
+                                    placeholder="Jl/kp">
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group col-6">
                                 <label for="exampleInputEmail1">Rekening 1</label>
                                 <input type="text" name="rekening1" class="form-control" id="exampleInputEmail1"
-                                    placeholder="Nama Pengantin">
+                                    placeholder="contoh '123-BRI'">
                             </div>
                             <div class="form-group col-6">
                                 <label for="exampleInputEmail1">Rekening 2</label>
                                 <input type="text" name="rekening2" class="form-control" id="exampleInputEmail1"
-                                    placeholder="Nama Pengantin">
+                                    placeholder="contoh '123-BRI">
                             </div>
                         </div>
                         <div class="row">
@@ -244,24 +244,24 @@
                             <div class="form-group col-6">
                                 <label for="exampleInputEmail1">Link Google maps</label>
                                 <input type="text" name="linkGmaps" class="form-control" id="exampleInputEmail1"
-                                    placeholder="Nama Pengantin">
+                                    placeholder="https://www.google.com/maps/....">
                             </div>
                             <div class="form-group col-6">
                                 <label for="exampleInputEmail1">Alamat Lokasi</label>
                                 <input type="text" name="alamat" class="form-control" id="exampleInputEmail1"
-                                    placeholder="Nama Pengantin">
+                                    placeholder="Jl/kp">
                             </div>
                         </div>
                         <div class="row">
                             <div class="form-group col-6">
                                 <label for="exampleInputEmail1">Rekening 1</label>
                                 <input type="text" name="rekening1" class="form-control" id="exampleInputEmail1"
-                                    placeholder="Nama Pengantin">
+                                    placeholder="contoh '123-BRI'">
                             </div>
                             <div class="form-group col-6">
                                 <label for="exampleInputEmail1">Rekening 2</label>
                                 <input type="text" name="rekening2" class="form-control" id="exampleInputEmail1"
-                                    placeholder="Nama Pengantin">
+                                    placeholder="123-BRI">
                             </div>
                         </div>
                         <div class="row">
