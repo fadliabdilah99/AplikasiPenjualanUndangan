@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\discount;
 use App\Models\pdua;
 use App\Models\produk;
 use App\Models\psatu;
@@ -11,9 +12,6 @@ class profileController extends Controller
 {
     public function index($id)
     {
-
-        // jika sudah lebih dari satu undangan, tampung dulu data setiap undangan di  dalam variable, lalu di jumlahkan untuk di return ke view
-
         // produk2
         $data['produk2'] = pdua::where(function ($query) use ($id) {
             if ($id == 2) {
@@ -36,8 +34,34 @@ class profileController extends Controller
             ->sum('produks.harga');
         $data['date'] = date("Y-m-d");
 
+        $data['jumlah'] = pdua::where('status', 'public')->where('user_id', $id)->count();
+
 
         // dd($data);
         return view('profile.index')->with($data);
+    }
+
+
+    public  function product()
+    {
+        $product = produk::get();
+        return view('productadmin.index', compact('product'));
+    }
+
+    public function discount(Request $request)
+    {
+
+        $request->validate([
+            'undangan_id' => 'required',
+            'discount' => 'required',
+            'deskripsi' => 'required',
+        ]);
+
+        if (discount::select('undangan_id')->where('undangan_id', $request->undangan_id)->first() == null) {
+            discount::create($request->all());
+            return redirect('product')->with('success', 'Discount created successfully!');
+        } else {
+            return redirect('product')->with('success', 'gagal!');
+        }
     }
 }

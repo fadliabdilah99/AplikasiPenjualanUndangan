@@ -180,15 +180,30 @@
                                 <tr>
                                     <th>ID</th>
                                     <th>Pasangan</th>
+                                    <th>Harga</th>
                                     <th>Tanggal kadaluarsa</th>
                                     <th>Aksi</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($produk2 as $dua)
+                                    @if ($jumlah < 1)
+                                        <?php $harga_akhir = $dua->harga * 0.5; ?>
+                                    @else
+                                        <?php $harga_akhir = $dua->harga; ?>
+                                    @endif
                                     <tr>
                                         <td>{{ $dua->id }}</td>
                                         <td>{{ $dua->pengantin_l }} & {{ $dua->pengantin_p }}</td>
+                                        <td>
+                                            @if ($jumlah < 1)
+                                                <?php $harga_akhir = $dua->harga * 0.5; ?>
+                                              <del>{{$dua->harga}}</del>
+                                            @else
+                                                <?php $harga_akhir = $dua->harga; ?>
+                                            @endif
+                                            {{ $harga_akhir }}
+                                        </td>
                                         <td>{{ $dua->tanggal }}</td>
                                         <td class="d-flex" style="gap:10px;">
                                             @if ($dua->No == 1)
@@ -260,7 +275,7 @@
                                                                     <label for="">Jumlah</label>
                                                                     <input type="number" name="amount"
                                                                         class="form-control" id="amount"
-                                                                        value="{{ $dua->harga }}">
+                                                                        value="{{ $harga_akhir }}">
                                                                 </div>
                                                             </div>
                                                             <div class="col-md-6">
@@ -288,9 +303,10 @@
                                                             class="bi bi-send"></i></button>
                                                 </form>
                                                 {{-- ganti --}}
-                                                <p hidden id="link">https://getbootstrap.com/docs/5.3/components/modal/#how-it-works</p>
-                                                <button type="submit" class="btn btn-info success-data" onclick="copyText('link')"><i
-                                                        class="bi bi-copy"></i></button>
+                                                <p hidden id="link">
+                                                    https://getbootstrap.com/docs/5.3/components/modal/#how-it-works</p>
+                                                <button type="submit" class="btn btn-info success-data"
+                                                    onclick="copyText('link')"><i class="bi bi-copy"></i></button>
 
                                                 <form action="{{ url('daftartamu2') }}" method="POST">
                                                     @csrf

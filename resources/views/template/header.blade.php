@@ -107,6 +107,14 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a href="{{ url('product') }}" class="nav-link">
+                            <i class="nav-icon far fa-image"></i>
+                            <p>
+                                Product
+                            </p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="{{ url('pay') }}" class="nav-link">
                             <i class="nav-icon far fa-image"></i>
                             <p>

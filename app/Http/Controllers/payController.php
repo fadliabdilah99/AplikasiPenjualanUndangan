@@ -86,4 +86,6 @@ class payController extends Controller
         }
         return redirect("pay")->with('success', 'Data berhasil di konfirmasi.');
     }
+
+
 }

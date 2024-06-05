@@ -68,6 +68,8 @@ Route::post('confirpay/{id}', [payController::class, 'confir']);
 
 
 Route::get('profile/{id}', [profileController::class, 'index']);
+Route::get('product', [profileController::class, 'product']);
+Route::post('discount', [profileController::class, 'discount']);
 
 
 // Route::post('/donation', [midtransController::class, 'store']);
