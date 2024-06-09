@@ -10,6 +10,7 @@ use App\Models\ucapan;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Storage;
 
 class produkController extends Controller
@@ -67,7 +68,7 @@ class produkController extends Controller
                     return view('produks.error');
                 }
             }
-        }else{
+        } else {
             return view('produks.error');
         }
     }
@@ -76,6 +77,9 @@ class produkController extends Controller
 
     public function create(Request $request)
     {
+        if (strpos($request->input('rekening1'), '-') == false || strpos($request->input('rekening2'), '-') == false ) {
+            return redirect('index')->with('info', 'GAGAL! Silahkan edit rekening Anda dengan (NOREK-NAMABANK)');
+         }
         $request->validate([
             'user_id' => 'required',
             'pengantin_l' => 'required|string|max:255',
@@ -91,10 +95,10 @@ class produkController extends Controller
             'alamat' => 'nullable|string|max:255',
             'rekening1' => 'nullable|string|max:255',
             'rekening2' => 'nullable|string|max:255',
-            'foto2' => 'nullable|image|mimes:jpeg,png,jpg,gif|dimensions:ratio=1/1',
-            'foto_l' => 'nullable|image|mimes:jpeg,png,jpg,gif|dimensions:ratio=1/1',
-            'foto_p' => 'nullable|image|mimes:jpeg,png,jpg,gif|dimensions:ratio=1/1',
-            'photos.*' => 'nullable|image|mimes:jpeg,png,jpg,gif|dimensions:ratio=16/9|max:6',
+            'foto2' => 'required',
+            'foto_l' => 'required',
+            'foto_p' => 'required',
+            'photos.*' => 'required',
         ]);
 
 
@@ -182,7 +186,6 @@ class produkController extends Controller
             'pengantin_l' => 'required',
             'pengantin_p' => 'required',
         ]);
-        // dd($request->email);
         pdua::find($id)->update($request->all());
 
         return redirect("profile/" . Auth::user()->id)->with("success", "Data berhasil diubah");
@@ -192,6 +195,13 @@ class produkController extends Controller
 
     public function destroy(pdua $pdua, $id)
     {
+        $fotos = foto::where('undangan_id', $id)->get();
+        foreach ($fotos as $foto) {
+            Storage::disk('public')->delete('assets/' . $foto->foto);
+        }
+        Foto::where('undangan_id', $id)->delete();
+
+
         $pdua->where('id', $id)->delete();
         return redirect("profile/" . Auth::user()->id)->with('success', 'Delete data member berhasil');
     }

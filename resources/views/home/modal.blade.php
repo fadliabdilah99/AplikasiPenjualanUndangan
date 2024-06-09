@@ -265,22 +265,8 @@
                             </div>
                         </div>
                         <div class="row">
-                            <div class="form-group col-4">
-                                <label for="exampleInputFile">foto berdua</label>
-                                <div class="input-group">
-                                    <div class="custom-file">
-                                        <input type="file" name="foto2" class="custom-file-input"
-                                            id="exampleInputFile">
-                                        <label class="custom-file-label" for="exampleInputFile">Choose
-                                            file</label>
-                                    </div>
-                                    <div class="input-group-append">
-                                        <span class="input-group-text">Upload</span>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-group col-4">
-                                <label for="exampleInputFile">Mempelai laki laki</label>
+                            <div class="form-group col-6">
+                                <label for="exampleInputFile">Mempelai laki laki(persegi/1:1)</label>
                                 <div class="input-group">
                                     <div class="custom-file">
                                         <input type="file" name="foto_l" class="custom-file-input"
@@ -293,8 +279,8 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-group col-4">
-                                <label for="exampleInputFile">Mempelai Perempuan</label>
+                            <div class="form-group col-6">
+                                <label for="exampleInputFile">Mempelai Perempuan(persegi/1:1)</label>
                                 <div class="input-group">
                                     <div class="custom-file">
                                         <input type="file" name="foto_p" class="custom-file-input"
@@ -308,7 +294,7 @@
                                 </div>
                             </div>
                         </div>
-                        <label for="exampleInputFile">5 Foto prewedding</label>
+                        <label for="exampleInputFile">5 Foto prewedding(landscape/16:9)</label>
                         <div class="input-group">
                             <div class="custom-file">
                                 <input type="file" class="custom-file-input" id="exampleInputFile"

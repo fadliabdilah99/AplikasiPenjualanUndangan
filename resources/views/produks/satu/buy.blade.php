@@ -100,7 +100,7 @@
                             </p>
                         </div>
                         <div class="col-4">
-                            <img src="{{ asset('storage/assets/' . $foto_l) }}" alt=""
+                            <img src="{{ route('image.display', $foto_l) }}" alt=""
                                 class="img-resposive rounded-circle" />
                         </div>
                     </div>
@@ -183,8 +183,7 @@
                 <div class="col-md-8 col-10 text-center">
                     <span>Story of Love</span>
                     <h2>Cerita Kami</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Quidem est esse vitae veniam libero
-                        ducimus optio aperiam, odio vero placeat!</p>
+                    <p>ini cerita kami</p>
                 </div>
             </div>
             <div class="row">
@@ -271,7 +270,7 @@
                         <input type="text" name="nama" class="form-control shadow-sm" id="form-nama"
                             placeholder="Isikan Nama Anda" />
                     </div>
-                    
+
 
                     <div class="mb-3">
                         <label for="form-kehadiran" class="form-label" id="label-kehadiran">Kehadiran</label>
@@ -286,8 +285,8 @@
 
                     <div class="mb-3">
                         <label for="form-nama" class="form-label">Nama</label>
-                        <textarea name="ucapan" class="form-control shadow-sm" id="form-nama"
-                            placeholder="Ucapan Doa" style="height: 100px"></textarea>
+                        <textarea name="ucapan" class="form-control shadow-sm" id="form-nama" placeholder="Ucapan Doa"
+                            style="height: 100px"></textarea>
                     </div>
 
                     <div class="d-flex">
@@ -300,16 +299,16 @@
             </form>
             <div class="container rounded pb-2 my-5 border">
                 <h1 class="font-ucapan">ucapan</h1>
-                <p class="blockquote-footer mt-1">total ucapan {{$totalucapan}}</p>
+                <p class="blockquote-footer mt-1">total ucapan {{ $totalucapan }}</p>
                 @foreach ($ucapan as $ucapan)
-                <div class="card mt-3 bg-dark px-5">
-                    <div class="card-body">
-                        <blockquote class="blockquote mb-0">
-                            <p>{{$ucapan->nama}}</p>
-                            <p class="blockquote-footer">{{$ucapan->ucapan}}</p>
-                        </blockquote>
+                    <div class="card mt-3 bg-dark px-5">
+                        <div class="card-body">
+                            <blockquote class="blockquote mb-0">
+                                <p>{{ $ucapan->nama }}</p>
+                                <p class="blockquote-footer">{{ $ucapan->ucapan }}</p>
+                            </blockquote>
+                        </div>
                     </div>
-                </div>
                 @endforeach
 
                 @if ($totalucapan > 10)
@@ -326,17 +325,18 @@
                 <div class="col-md-8 col-10 text-center">
                     <span>ungkapan Tanda kasih</span>
                     <h2>Kirim Hadiah</h2>
-                    <p>Dengan tulus kami mengucapkan terima kasih atas hadiah dan doa restu yang telah diberikan. Kehadiran dan perhatian Anda sangat berarti bagi kami.</p>
+                    <p>Dengan tulus kami mengucapkan terima kasih atas hadiah dan doa restu yang telah diberikan.
+                        Kehadiran dan perhatian Anda sangat berarti bagi kami.</p>
                 </div>
                 <div class="row justify-content-center text-center">
                     <div class="col-md-6">
                         <ul class="list-group">
                             <li class="list-group-item">
-                                <div class="fw-bold">{{$namarekening1}}</div>
+                                <div class="fw-bold">{{ $namarekening1 }}</div>
                                 {{ $rekening1 }}
                             </li>
                             <li class="list-group-item">
-                                <div class="fw-bold">{{$namarekening2}}</div>
+                                <div class="fw-bold">{{ $namarekening2 }}</div>
                                 {{ $rekening2 }}
                             </li>
                         </ul>

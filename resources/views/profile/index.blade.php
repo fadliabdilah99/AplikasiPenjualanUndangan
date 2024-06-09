@@ -119,12 +119,12 @@
                                                 @if ($list->tanggal > $date)
                                                     {{ $list->tanggal }}
                                                 @else
-                                                    <form action="{{ url('dua/' . $list->id) }}" method="POST"
+                                                    <form action="{{ url('delete/' . $list->id) }}" method="POST"
                                                         style="display: inline">
                                                         @csrf
                                                         @method('DELETE')
                                                         <button class="btn bg-danger delete-data" type="button">
-                                                            <i class="fas fa-trash-alt"></i> Delete
+                                                            <i class="fas fa-trash-alt"></i> <i class="bi bi-trash3"></i>
                                                         </button>
                                                     </form>
                                                 @endif
@@ -159,7 +159,6 @@
                 <div class="card">
                     <div class="card-header">
                         <h3 class="card-title">Undangan anda</h3>
-
                         <div class="card-tools">
                             <div class="input-group input-group-sm" style="width: 150px;">
                                 <input type="text" name="table_search" class="form-control float-right"
@@ -187,20 +186,23 @@
                             </thead>
                             <tbody>
                                 @foreach ($produk2 as $dua)
-                                    @if ($jumlah < 1)
-                                        <?php $harga_akhir = $dua->harga * 0.5; ?>
-                                    @else
-                                        <?php $harga_akhir = $dua->harga; ?>
-                                    @endif
                                     <tr>
                                         <td>{{ $dua->id }}</td>
                                         <td>{{ $dua->pengantin_l }} & {{ $dua->pengantin_p }}</td>
                                         <td>
-                                            @if ($jumlah < 1)
-                                                <?php $harga_akhir = $dua->harga * 0.5; ?>
-                                              <del>{{$dua->harga}}</del>
+                                            @if ($dua->discount == null)
+                                                <?php $harga = $dua->harga; ?>
                                             @else
-                                                <?php $harga_akhir = $dua->harga; ?>
+                                                <?php $harga = ($dua->harga * $dua->discount) / 100; ?>
+                                            @endif
+                                            @if ($jumlah < 1)
+                                                <?php $harga_akhir = $harga * 0.5; ?>
+                                                <del class="text-danger">{{ $dua->harga }}</del>
+                                            @else
+                                                @if ($dua->harga != $harga)
+                                                    <del class="text-danger">{{ $dua->harga }}</del>
+                                                @endif
+                                                <?php $harga_akhir = $harga; ?>
                                             @endif
                                             {{ $harga_akhir }}
                                         </td>
@@ -220,9 +222,7 @@
                                                 </button>
                                                 {{-- payment --}}
                                                 <form action="#" id="donation_form">
-
                                                     <div class="" hidden>
-
                                                         <div class="row">
                                                             <div class="col-md-6">
                                                                 <div class="form-group">
@@ -318,6 +318,14 @@
                                                             class="bi bi-book-half"></i></button>
                                                 </form>
                                             @endif
+                                            <form action="{{ url('delete/' . $dua->id) }}" method="POST"
+                                                style="display: inline">
+                                                @csrf
+                                                @method('DELETE')
+                                                <button class="btn bg-danger delete-data" type="button">
+                                                    <i class="fas fa-trash-alt"></i> <i class="bi bi-trash3"></i>
+                                                </button>
+                                            </form>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -325,6 +333,8 @@
                         </table>
                     </div>
                     <!-- /.card-body -->
+                    <p class="px-2">metode payment hanya bisa di gunakan untuk pembayaran paling atas (jika anda
+                        mempunyai >2 undangan yang belum di bayar)</p>
                 </div>
                 <!-- /.card -->
             </div>
@@ -341,7 +351,7 @@
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
     <script
-        src="{{ !config('services.midtrans.isProduction') ? 'https://app.sandbox.midtrans.com/snap/snap.js' : 'https://app.midtrans.com/snap/snap.js' }}"
+        src="{{ !config('services.midtrans.isProduction') ? 'https://app.midtrans.com/snap/snap.js' : 'https://app.midtrans.com/snap/snap.js' }}"
         data-client-key="{{ config('services.midtrans.clientKey') }}"></script>
 
     <script src="{{ asset('assets') }}/plugins/sweetalert2/sweetalert2.min.js"></script>

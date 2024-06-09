@@ -24,7 +24,8 @@ class profileController extends Controller
         })
             ->join('users', 'pduas.user_id', '=', 'users.id')
             ->join('produks', 'pduas.No', '=', 'produks.id')
-            ->select('pduas.*', 'users.name', 'users.email', 'produks.harga', 'produks.nama')
+            ->leftJoin('discounts', 'pduas.No', '=', 'discounts.undangan_id')
+            ->select('pduas.*', 'users.name', 'users.email', 'produks.harga', 'produks.nama', 'discounts.discount', 'discounts.deskripsi')
             ->get();
 
         $data['produkAll'] = produk::get();

@@ -72,7 +72,7 @@ class product1Controller extends Controller
                return view('produks.error');
             }
          }
-      }else{
+      } else {
          return view('produks.error');
       }
    }
@@ -80,7 +80,9 @@ class product1Controller extends Controller
 
    public function create(Request $request)
    {
-
+      if (strpos($request->input('rekening1'), '-') == false || strpos($request->input('rekening2'), '-') == false ) {
+         return redirect('index')->with('peringatan', 'GAGAL! Silahkan edit rekening Anda dengan (NOREK-NAMABANK)');
+      }
       $request->validate([
          'user_id' => 'required',
          'pengantin_l' => 'required|string|max:255',

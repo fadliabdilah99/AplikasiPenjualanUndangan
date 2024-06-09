@@ -1,7 +1,49 @@
 @extends('template.main')
 
 @section('content')
-    <div class="container">
+    <div class="container my-3">
+        <table id="example1" class="datatables table table-bordered table-striped text-center">
+            <thead>
+                <tr>
+                    <th>id</th>
+                    <th>Nama Undangan</th>
+                    <th>foto</th>
+                    <th>harga</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach ($product as $prod)
+                    <tr>
+                        <td>{{ $prod->id }}</td>
+                        <td>{{ $prod->nama }}</td>
+                        <td>{{ $prod->foto }}</td>
+                        <td>{{ $prod->harga }}</td>
+                        <td>
+                            <button type="button" class="btn btn-success" data-toggle="modal"
+                                data-target="#modal-default{{ $prod->id }}">
+                                Discount
+                            </button>
+                            <button class="btn btn-danger">Delete</button>
+                        </td>
+                    </tr>
+                @endforeach
+            </tbody>
+
+            <tfoot>
+                <tr>
+                    <th>id</th>
+                    <th>Nama Undangan</th>
+                    <th>foto</th>
+                    <th>harga</th>
+                    <th>Aksi</th>
+                </tr>
+            </tfoot>
+        </table>
+    </div>
+    <div class="container mt-5">
+        <h4 class="btn btn-info">Undagan Discount</h4>
         <table id="example1" class="datatables table table-bordered table-striped text-center">
             <thead>
                 <tr>

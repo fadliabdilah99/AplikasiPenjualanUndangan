@@ -80,8 +80,8 @@
             <header>
                 <h2>Temukan keindahan setiap titik cahaya di <strong>ULFAVIA</strong>.</h2>
                 <p>
-                    Diskon 50% untuk kamu pemgguna baru <a href="http://html5up.net">ketentuan berlaku</a>. <br>
-                    Cek undangan yang lagi diskon yuuu <a href="http://html5up.net/license">disini</a>
+                    Diskon 50% untuk kamu pengguna baru <a href="">ketentuan berlaku</a>. <br>
+                    Cek undangan yang lagi diskon yuuu <a href="#prod">disini</a>
                 </p>
                 @if (Auth::check())
                     <a href="profile/{{ auth()->user()->id }}"
@@ -91,7 +91,7 @@
         </section>
 
         <!-- Carousel -->
-        <section class="carousel">
+        <section class="carousel" id="prod">
             <div class="reel">
                 @foreach ($produk as $prod)
                     <article>
@@ -102,6 +102,14 @@
                         </header>
 
                         <p class="text-start">{{ $prod->keterangan }}</p>
+                        <h5 class="text-start">Rp.
+                            @if ($prod->discount == null)
+                                {{ $prod->harga }}
+                            @else
+                                {{ ($prod->discount * $prod->harga) / 100 }}
+                                <s class="text-danger fs-6">{{ $prod->harga }}</s>
+                            @endif
+                        </h5>
                         @if (Auth::check())
                             <p><button type="button" class="btn btn-outline-success" data-bs-toggle="modal"
                                     data-bs-target="#buy{{ $prod->link }}">
@@ -489,6 +497,29 @@
         $(document).ready(function() {
             if (successNotification) {
                 showNotification(successNotification);
+            }
+        });
+    </script>
+
+    <script>
+        // Periksa apakah terdapat notifikasi sukses dari sesi
+        const peringatanNotification = '{{ session('peringatan') }}';
+
+        // Fungsi untuk menampilkan notifikasi
+        function showNotificationperingatan(message) {
+            Swal.fire({
+                title: 'Kesalahan!',
+                text: message,
+                icon: 'error',
+                confirmButtonText: 'OK',
+                focusConfirm: false
+            });
+        }
+
+        // Periksa apakah terdapat notifikasi sukses dari sesi
+        $(document).ready(function() {
+            if (peringatanNotification) {
+                showNotificationperingatan(peringatanNotification);
             }
         });
     </script>

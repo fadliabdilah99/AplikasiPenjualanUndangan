@@ -8,6 +8,8 @@ use App\Http\Controllers\payController;
 use App\Http\Controllers\product1Controller;
 use App\Http\Controllers\produkController;
 use App\Http\Controllers\profileController;
+use App\Http\Controllers\webhostController;
+use Illuminate\Support\Facades\Artisan;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -48,7 +50,7 @@ Route::post('ucapanpdua', [produkController::class, 'ucapan']);
 Route::post('createdua', [produkController::class, 'create']);
 Route::post('update/{id}', [produkController::class, 'update']);
 Route::post('daftartamu2', [produkController::class, 'daftartamu']);
-Route::delete('dua/{id}', [produkController::class, 'destroy']);
+Route::delete('delete/{id}', [produkController::class, 'destroy']);
 
 
 // produk 1
@@ -81,3 +83,10 @@ Route::post('login', [authController::class, 'validasi']);
 Route::get('register', [authController::class, 'registerV']);
 Route::post('register', [authController::class, 'register']);
 Route::get('logout', [authController::class, 'logout']);
+
+
+
+
+
+// untuk 000webhost
+Route::get('/storage/assets/{filename}', [webhostController::class, 'displayImage'])->name('image.display');

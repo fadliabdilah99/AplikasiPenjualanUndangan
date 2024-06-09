@@ -16,8 +16,7 @@ class homeController extends Controller
         }else{
             $count = false;
         }
-        $produk = produk::get();
-        // dd($count);
+        $produk = produk::leftJoin('discounts', 'produks.id', '=', 'discounts.undangan_id')->select('produks.*', 'discounts.discount', 'discounts.deskripsi')->get();
         return view('home.index', compact('produk', 'count'));
     }
 }
