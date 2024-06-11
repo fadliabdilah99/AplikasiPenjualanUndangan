@@ -44,7 +44,7 @@ class messageController extends Controller
     public function shareViaWhatsApp(Request $request)
     {
         // URL yang ingin Anda bagikan via WhatsApp
-        $url = "https://f8cf-180-244-134-26.ngrok-free.app/$request->link";
+        $url = "https://undanganulfavia.000webhostapp.com$request->link";
 
         // Format pesan untuk dibagikan via WhatsApp
         $message = "Hallo, kami pihak keluarga dari $request->pengantin ingin menyampaikan undangan ini kepada pihak yang bersangkutan, kami harap anda datang pada tanggal yang di tentukan. info lebih lanjut ->: " . $url;

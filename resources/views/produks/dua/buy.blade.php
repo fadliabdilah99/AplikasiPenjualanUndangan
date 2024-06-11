@@ -236,7 +236,7 @@
                 <div class="overflow-x-hidden">
                     <div data-aos="fade-right" data-aos-duration="2000">
                         <div class="img-crop border border-3 border-light shadow my-4 mx-auto">
-                            <img src="{{ asset('storage/assets/' . $foto_l) }}" alt="cowo"
+                            <img src="{{ route('image.display', $foto_l) }}" alt="cowo"
                                 onclick="util.modal(this)" />
                         </div>
                         <h1 class="font-esthetic" style="font-size: 3rem">
@@ -278,7 +278,7 @@
 
                     <div data-aos="fade-left" data-aos-duration="2000">
                         <div class="img-crop border border-3 border-light shadow my-4 mx-auto">
-                            <img src="{{ asset('storage/assets/' . $foto_p) }}" alt="cewe"
+                            <img src="{{ route('image.display', $foto_p) }}" alt="cewe"
                                 onclick="util.modal(this)" />
                         </div>
                         <h1 class="font-esthetic" style="font-size: 3rem">
@@ -470,7 +470,7 @@
                             @for ($i = 0; $i < 3; $i++)
                                 @if (isset($album[$i]))
                                     <div class="carousel-item @if ($i === 0) active @endif">
-                                        <img src="{{ asset('storage/assets/' . $album[$i]->foto) }}" alt="gambar {{ $i + 1 }}"
+                                        <img src="{{ route('image.display', $album[$i]->foto) }}" alt="gambar {{ $i + 1 }}"
                                             class="d-block w-100" onclick="util.modal(this)" />
                                     </div> 
                                 @endif @endfor
@@ -503,7 +503,7 @@
         <div class="carousel-inner rounded-4">
             @for ($i = count($album) - 1; $i >= count($album) - 3 && $i >= 0; $i--)
                 <div class="carousel-item @if ($i === count($album) - 1) active @endif">
-                    <img src="{{ asset('storage/assets/' . $album[$i]->foto) }}"
+                    <img src="{{ route('image.display', $album[$i]->foto) }}"
                         alt="gambar {{ count($album) - $i }}" class="d-block w-100" onclick="util.modal(this)" />
                 </div>
                 <h1>{{ $album[$i]->foto }}</h1>

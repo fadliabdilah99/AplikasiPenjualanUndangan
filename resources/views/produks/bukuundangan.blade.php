@@ -72,66 +72,74 @@
     </div>
 
     <div class="daftar-undangan" id="daftar-undangan">
-        <div class="container">
+        <div class="title d-flex justify-content-center " style=" height: 100vh;">
+            <div class="container card">
+                <div class="text-center">
+                    <h1>Daftar-Tamu</h1>
+                    @if ($ucapan->count() == 0)
+                        <h5>tidak ada tamu yang mengisi</h5>
+                    @endif
+                </div>
+                <div class="tamu row  container">
+                    @foreach ($ucapan as $ucapan)
+                        <div class="col-md-3 col-sm-6 col-12">
+                            <div
+                                class="info-box bg-gradient-info 
+                                    @if ($ucapan->kehadiran == 2) {{ 'bg-gradient-danger' }} @endif">
+                                <span class="info-box-icon"><i class="far fa-bookmark"></i></span>
 
-            <div class="title">
-                <h1>daftar-tamu</h1>
-            </div>
-            <div class="tamu row  container">
-                @foreach ($ucapan as $ucapan)
-                    <div class="col-md-3 col-sm-6 col-12">
-                        <div
-                            class="info-box bg-gradient-info 
-                    @if ($ucapan->kehadiran == 2) {{ 'bg-gradient-danger' }} @endif">
-                            <span class="info-box-icon"><i class="far fa-bookmark"></i></span>
-
-                            <div class="info-box-content">
-                                <h5 class="info-box-text"> {{ $ucapan->nama }} </h5>
-                                <span class="">
-                                    @if ($ucapan->kehadiran == 1)
-                                        <b>hadir</b>
-                                    @else
-                                        <b>Berhalangan Hadir</b>
-                                    @endif
-                                </span>
-                                <span class="">
-                                    <butto type="button" class="btn fs-4 text-light" data-bs-toggle="modal"
-                                        data-bs-target="#envelove{{$ucapan->id}}"><i class="bi bi-envelope-heart"></i></butto>
-                                </span>
+                                <div class="info-box-content">
+                                    <h4 class="info-box-text">Dari {{ $ucapan->nama }} </h4>
+                                    <span class="">
+                                        <butto type="button" class="btn fs-2 text-light" data-bs-toggle="modal"
+                                            data-bs-target="#envelove{{ $ucapan->id }}"><i
+                                                class=" bi bi-envelope-heart"></i></butto>
+                                    </span>
+                                </div>
+                                <!-- /.info-box-content -->
                             </div>
-                            <!-- /.info-box-content -->
+                            <!-- /.info-box -->
                         </div>
-                        <!-- /.info-box -->
-                    </div>
 
 
 
-                    <!-- Modal -->
-                    <div class="modal fade" id="envelove{{$ucapan->id}}" tabindex="-1" aria-labelledby="exampleModalLabel"
-                        aria-hidden="true">
-                        <div class="modal-dialog modal-dialog-scrollable">
-                            <div class="modal-content">
-                                <div class="modal-header">
-                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Dari {{$ucapan->nama}}</h1>
-                                    <button type="button" class="btn-close" data-bs-dismiss="modal"
-                                        aria-label="Close"></button>
-                                </div>
-                                <div class="modal-body">
-                                  {{$ucapan->ucapan}}
-                                </div>
-                                <div class="modal-footer">
-                                    <button type="button" class="btn btn-secondary"
-                                        data-bs-dismiss="modal">Close</button>
-                                    <button type="button" class="btn btn-primary">Save changes</button>
+                        <!-- Modal -->
+                        <div class="modal fade" id="envelove{{ $ucapan->id }}" tabindex="-1"
+                            aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-scrollable">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h1 class="modal-title fs-5" id="exampleModalLabel">Dari {{ $ucapan->nama }}
+                                            <span class="">
+                                                @if ($ucapan->kehadiran == 1)
+                                                    <b class="text-success">hadir</b>
+                                                @else
+                                                    <b class="text-danger">Berhalangan Hadir</b>
+                                                @endif
+                                            </span>
+                                        </h1>
+                                        <button type="button" class="btn-close" data-bs-dismiss="modal"
+                                            aria-label="Close"></button>
+                                    </div>
+                                    <div class="modal-body">
+                                        {{ $ucapan->ucapan }}
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button type="button" class="btn btn-secondary"
+                                            data-bs-dismiss="modal">Close</button>
+                                        <button type="button" class="btn btn-primary">Save changes</button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                @endforeach
+                    @endforeach
+                </div>
             </div>
         </div>
 
     </div>
+
+
 
 
 

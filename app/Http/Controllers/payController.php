@@ -64,28 +64,23 @@ class payController extends Controller
 
 
         // dd($no_undangan); 
-        if ($no_undangan == 1) {
-            dd('no1');
-        } elseif ($no_undangan == 2) {
-            // membuka akses undangan
-            Pdua::find($id_undangan)->update(['status' => 'public']);
-            // menghapus foto dan menghapus table
-            if ($payment->foto) {
-                Storage::disk('public')->delete('assets/' . $payment->foto);
-            } else {
-                print('Foto tidak ada');
-            }
-            pay::find($id)->delete();
 
-            // mengirimkan pesan
-            $data['send'] = $request->send;
-            $data['to'] = $request->to;
-            $data['title'] = $request->title;
-            $data['message'] = $request->massage;
-            message::create($data);
+        // membuka akses undangan
+        Pdua::find($id_undangan)->update(['status' => 'public']);
+        // menghapus foto dan menghapus table
+        if ($payment->foto) {
+            Storage::disk('public')->delete('assets/' . $payment->foto);
+        } else {
+            print('Foto tidak ada');
         }
+        pay::find($id)->delete();
+
+        // mengirimkan pesan
+        $data['send'] = $request->send;
+        $data['to'] = $request->to;
+        $data['title'] = $request->title;
+        $data['message'] = $request->massage;
+        message::create($data);
         return redirect("pay")->with('success', 'Data berhasil di konfirmasi.');
     }
-
-
 }

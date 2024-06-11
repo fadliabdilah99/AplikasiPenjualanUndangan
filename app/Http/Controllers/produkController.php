@@ -77,9 +77,9 @@ class produkController extends Controller
 
     public function create(Request $request)
     {
-        if (strpos($request->input('rekening1'), '-') == false || strpos($request->input('rekening2'), '-') == false ) {
+        if (strpos($request->input('rekening1'), '-') == false || strpos($request->input('rekening2'), '-') == false) {
             return redirect('index')->with('info', 'GAGAL! Silahkan edit rekening Anda dengan (NOREK-NAMABANK)');
-         }
+        }
         $request->validate([
             'user_id' => 'required',
             'pengantin_l' => 'required|string|max:255',
@@ -222,22 +222,20 @@ class produkController extends Controller
 
     public function daftartamu(Request $request)
     {
+
         $No = $request->No;
         $bukuundangan = ucapan::where('undangan_id', $request->undangan_id)->where('ucapans.No', $No);
-        $bukuundangan2 = ucapan::where('undangan_id', $request->undangan_id)->where('ucapans.No', $No);
+        $bukuundangan2 = $bukuundangan;
 
         $Buku['ucapan'] = $bukuundangan->get();
 
-        $Buku['pengantin'] = $bukuundangan
-            ->join('pduas', 'ucapans.undangan_id', 'pduas.id')
-            ->select('ucapans.*', 'pduas.pengantin_l', 'pduas.pengantin_p')
-            ->first();
+        $Buku['pengantin'] = pdua::find($request->undangan_id);
 
 
         $Buku['tamuTH'] = $bukuundangan->where('kehadiran', '2')->count();
         $Buku['tamuH'] = $bukuundangan2->where('kehadiran', '1')->count();
 
-
+        // dd($Buku['pengantin']);
         return view('produks.bukuundangan')->with($Buku);
     }
 }

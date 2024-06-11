@@ -53,7 +53,11 @@
                     <p>Web wedding invitation Generator</p>
                 </header>
                 <footer>
-                    <a href="#banner" class="button circled">Start</a>
+                    @if (Auth::check())
+                        <a href="#banner" class="button circled">Start</a>
+                    @else
+                        <a href="login" class="button circled">Login</a>
+                    @endif
                 </footer>
             </div>
 

@@ -303,10 +303,10 @@
                                                             class="bi bi-send"></i></button>
                                                 </form>
                                                 {{-- ganti --}}
-                                                <p hidden id="link">
+                                                <p hidden id="copy">
                                                     https://getbootstrap.com/docs/5.3/components/modal/#how-it-works</p>
-                                                <button type="submit" class="btn btn-info success-data"
-                                                    onclick="copyText('link')"><i class="bi bi-copy"></i></button>
+                                                <button type="submit" class="btn btn-info" onclick="copyText('copy')"><i
+                                                        class="bi bi-copy"></i></button>
 
                                                 <form action="{{ url('daftartamu2') }}" method="POST">
                                                     @csrf
@@ -445,6 +445,26 @@
         });
     </script>
 
+
+    {{-- fungsi copy --}}
+    <script>
+        function copyText(elementId) {
+            // Buat elemen input sementara untuk menampung teks
+            var tempInput = document.createElement("input");
+            // Dapatkan teks dari elemen dengan id yang diberikan
+            var textToCopy = document.getElementById(elementId).innerText;
+            // Masukkan teks ke dalam elemen input
+            tempInput.value = textToCopy;
+            // Tambahkan elemen input ke dalam body
+            document.body.appendChild(tempInput);
+            // Pilih teks dalam elemen input
+            tempInput.select();
+            // Salin teks yang dipilih ke clipboard
+            document.execCommand("copy");
+            // Hapus elemen input sementara dari body
+            document.body.removeChild(tempInput);
+        }
+    </script>
 
     <script src="https://code.jquery.com/jquery-3.7.1.min.js"
         integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>

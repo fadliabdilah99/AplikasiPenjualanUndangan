@@ -109,7 +109,7 @@
                 <div class="col-lg-6">
                     <div class="row">
                         <div class="col-4">
-                            <img src="{{ asset('storage/assets/' . $foto_p) }}" alt=""
+                            <img src="{{ route('image.display', $foto_p) }}" alt=""
                                 class="img-resposive rounded-circle" />
                         </div>
                         <div class="col-8">
@@ -205,7 +205,7 @@
                                 timeline-kanan @endif
                             ">
                                 <div class="timeline-img"
-                                    style="background: url('{{ asset('storage/assets' . '/' . $storys->foto) }}'); background-size: cover; width: 100px; height: 100px;">
+                                    style="background: url('{{ route('image.display', $storys->foto) }}'); background-size: cover; width: 100px; height: 100px;">
                                 </div>
                                 <div class="timeline-panel">
                                     <div class="timeline-heading">
@@ -242,9 +242,9 @@
                 <div class="justify-content-center row row-cols-md-3 row-cols-lg-4 row-cols-sm-2 row-cols-1">
                     @foreach ($album as $albums)
                         <div class="col mt-3">
-                            <a href="{{ asset('storage/assets/' . $albums->foto) }}" data-toggle="lightbox"
+                            <a href="{{ route('image.display', $albums->foto) }}" data-toggle="lightbox"
                                 data-caption="image 2" data-gallery="myfoto">
-                                <img src="{{ asset('storage/assets/' . $albums->foto) }}" alt=""
+                                <img src="{{ route('image.display', $albums->foto) }}" alt=""
                                     class="img-fluid w-100 rounded" />
                             </a>
                         </div>
